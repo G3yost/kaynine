@@ -36,12 +36,12 @@ KayNine.prototype.update = function () {
 
 
     // Modify accel/state
-    // this.game.keyDownList;
+// this.game.keyDownList;
     // Ground move set
 
 
     // Air move set
-commit -m "Made layout for kaynine file."
+
 
     // Wall move set
 
