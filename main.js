@@ -1,6 +1,6 @@
 var ASSET_MANAGER = new AssetManager();
 
-ASSET_MANAGER.queueDownlaod(".img/Background.png");
+ASSET_MANAGER.queueDownload(".img/Background.png");
 
 ASSET_MANAGER.downloadAll(function () {
     var canvas = document.getElementById('gameWorld');
