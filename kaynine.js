@@ -22,10 +22,23 @@ function KayNine(game) {
     this.wallHangRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false);
     this.wallHangLeft  = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false);
 
+    // Status
+    this.jumpReq = false;
+    this.onGround = true;
+    this.onWall = false;
+
     // Movement
+    this.xAccel = 0;
+    this.yAccel = 0;
+
+    this.jumpVelocity = 15;
     this.groundAccel = 0.5;
     this.wallAccel = this.groundAccel / 8;
     this.airAccel = this.groundAccel / 2;
+
+    this.ground = 600;
+    this.leftWall  = 375;
+    this.rightWall = 425;
 
     Entity.call(this, game, 0, 400);
 }
@@ -35,30 +48,43 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
-    // get curent position properties
-
 
     // Modify accel/state
 // this.game.keyDownList;
     // Ground move set
+    if(this.onGround) {
 
+        if(this.keyDownList['space']) { this.yVel = this.jumpVelocity; }
 
-    // Air move set
-
-
+             if(this.keyDownList['a'] && !this.keyDownList['d']) { this.xAccel =  this.groundAccel; }
+        else if(this.keyDownList['d'] && !this.keyDownList['a']) { this.xAccel = -this.groundAccel; }
+    }
     // Wall move set
+    else if(this.onWall) {
+
+        if(this.keyDownList['space']) { this.yVel = this.jumpVelocity; }
+
+             if(this.keyDownList['a'] && !this.keyDownList['d']) { this.xAccel =  this.airAccel; }
+        else if(this.keyDownList['d'] && !this.keyDownList['a']) { this.xAccel = -this.airAccel; }
+    }
+    // Air move set
+    else {
+
+
+    }
+
 
 
     // Modify position/state
 
-    if(this.xVel > 0)
+    if(this.xVel > 0) {}
 
     Entity.prototype.update.call(this);
 }
 
 KayNine.prototype.draw = function (ctx) {
 
-    //if
+    if (false) {}
 
 
     Entity.prototype.draw.call(this);

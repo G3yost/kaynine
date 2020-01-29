@@ -3,7 +3,6 @@ function Entity(game, x, y) {
 
     // Game world
     this.facingRight = true;
-    this.jumpReq = false;
 
     this.xPos = x;
     this.xVel = 0;
