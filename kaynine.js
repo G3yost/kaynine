@@ -2,6 +2,12 @@ function KayNine(game) {
 
     // Files
     ASSET_MANAGER.queueDownload("./img/RobotUnicorn.png");
+    ASSET_MANAGER.queueDownload("./img/Kay_Nine_Jumping.png");
+    ASSET_MANAGER.queueDownload("./img/Kay_Nine_Running.png");
+    ASSET_MANAGER.queueDownload("./img/Kay_Nine_Wall_Climbing.png");
+    ASSET_MANAGER.queueDownload("./img/Kay_Nine_Wall_Hang.png");
+    ASSET_MANAGER.queueDownload("./img/Kay_Nine_Wall_Jump.png");
+
 
     // Animations
     this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false);
