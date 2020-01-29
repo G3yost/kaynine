@@ -1,10 +1,8 @@
 function Floor(game, spritesheet, xPosition, yPosition, /*length, height,*/ move){
-    this.x = xPosition;
-    this.y = yPosition;
     //this.moving = move;
     // this.length = length;
     // this.height = height;
-    Entity.call(this, game, this.x, this.y);
+    Entity.call(this, game, xPosition, yPosition);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
 }

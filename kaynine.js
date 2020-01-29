@@ -58,7 +58,7 @@ KayNine.prototype.update = function () {
 
 KayNine.prototype.draw = function (ctx) {
 
-    if
+    //if
 
 
     Entity.prototype.draw.call(this);
