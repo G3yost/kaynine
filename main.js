@@ -7,7 +7,7 @@ ASSET_MANAGER.downloadAll(function () {
     var ctx = canvas.getContext('2d');
 
     var gameEngine = new GameEngine();
-    var bg = new Background(gameEngine);
+    var bg = new Background(gameEngine, ASSET_MANAGER.getAsset(".img/Background.png"));
     var kayNine = new KayNine(gameEngine);
 
     gameEngine.addEntity(bg);
