@@ -35,6 +35,10 @@ function GameEngine() {
     this.ctx = null;
     this.surfaceWidth = null;
     this.surfaceHeight = null;
+
+    this.groundFriction = 1;
+    this.wallFriction = 1;
+    this.airFriction = 0.1;
 }
 
 GameEngine.prototype.init = function (ctx) {
