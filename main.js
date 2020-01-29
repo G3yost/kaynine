@@ -1,13 +1,13 @@
 var ASSET_MANAGER = new AssetManager();
 
-ASSET_MANAGER.queueDownload(".img/Background.png");
+ASSET_MANAGER.queueDownload("img/Background.png");
 
 ASSET_MANAGER.downloadAll(function () {
     var canvas = document.getElementById('gameWorld');
     var ctx = canvas.getContext('2d');
 
     var gameEngine = new GameEngine();
-    var bg = new Background(gameEngine, ASSET_MANAGER.getAsset(".img/Background.png"));
+    var bg = new Background(gameEngine, ASSET_MANAGER.getAsset("img/Background.png"));
     var kayNine = new KayNine(gameEngine);
 
     gameEngine.addEntity(bg);
