@@ -31,7 +31,10 @@ function KayNine(game) {
     this.xAccel = 0;
     this.yAccel = 0;
 
+    this.xMax = 10;
+
     this.jumpVelocity = 15;
+    this.wallJumpVelocity = 10;
     this.groundAccel = 0.5;
     this.wallAccel = this.groundAccel / 8;
     this.airAccel = this.groundAccel / 2;
@@ -54,30 +57,44 @@ KayNine.prototype.update = function () {
     // Ground move set
     if(this.onGround) {
 
-        if(this.keyDownList['space']) { this.yVel = this.jumpVelocity; }
+        if(this.game.keyDownList['space']) { this.yVel = this.jumpVelocity; this.jumpReq = true; }
 
-             if(this.keyDownList['a'] && !this.keyDownList['d']) { this.xAccel =  this.groundAccel; }
-        else if(this.keyDownList['d'] && !this.keyDownList['a']) { this.xAccel = -this.groundAccel; }
+             if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel = -this.groundAccel; }
+        else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel =  this.groundAccel; }
     }
     // Wall move set
     else if(this.onWall) {
 
-        if(this.keyDownList['space']) { this.yVel = this.jumpVelocity; }
+        if(this.game.keyDownList['space']) { this.xVel = this.onWall === 'right' ? -this.wallJumpVelocity : this.wallJumpVelocity; this.onWall = false; }
 
-             if(this.keyDownList['a'] && !this.keyDownList['d']) { this.xAccel =  this.airAccel; }
-        else if(this.keyDownList['d'] && !this.keyDownList['a']) { this.xAccel = -this.airAccel; }
+             if(this.onWall === "right" && !this.game.keyDownList['d']) { this.onWall = false; }
+        else if(this.onWall === "left"  && !this.game.keyDownList['a']) { this.onWall = false; }
+
+             if(this.onWall && this.game.keyDownList['w']) { this.yAccel =  this.wallAccel; }
+        else if(this.onWall && this.game.keyDownList['s']) { this.yAccel = -this.wallAccel; }
     }
     // Air move set
     else {
 
+        if(this.jumpReq && !this.keyDownList['space']) { this.jumpReq = false; }
 
+             if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel =  this.airAccel; }
+        else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel = -this.airAccel; }
     }
 
-
-
     // Modify position/state
+    this.xVel += this.xAccel;
+    this.yVel += this.yAccel;
 
-    if(this.xVel > 0) {}
+    this.xPos += this.xVel;
+    this.yPos += this.yVel;
+
+    if(this.yPos > this.ground) { this.yPos = this.ground; this.yVel = 0; this.yAccel = 0; }
+         if(this.xVel >  this.xMax) { this.xVel =  this.xMax; }
+    else if(this.xVel < -this.xMax) { this.xVel = -this.xMax; }
+
+    if(this.xVel > 0) { this.facingRight =  true; }
+    if(this.xVel < 0) { this.facingRight = false; }
 
     Entity.prototype.update.call(this);
 }
