@@ -357,7 +357,6 @@ GameEngine.prototype.loop = function () {
     this.clockTick = this.timer.tick();
     this.update();
     this.draw();
-console.log(this.keyDownList);
     this.space = null;
 }
 
