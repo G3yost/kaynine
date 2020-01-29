@@ -1,16 +1,33 @@
-function Unicorn(game) {
-    this.animation = new Animation(ASSET_MANAGER.getAsset("./img/RobotUnicorn.png"), 0, 0, 206, 110, 0.02, 30, true, true);
-    this.jumpAnimation = new Animation(ASSET_MANAGER.getAsset("./img/RobotUnicorn.png"), 618, 334, 174, 138, 0.02, 40, false, true);
-    this.jumping = false;
-    this.radius = 100;
-    this.ground = 400;
+function KayNine(game) {
+
+    // Animations
+    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+
+    this.walkRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+    this.walkLeft  = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+
+    this.jumpRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+    this.jumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+
+    this.wallHangRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+    this.wallHangLeft  = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false;
+
+    this.animation = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), 0, 0, 206, 110, 0.02, 30, true, true);
+    this.jumpAnimation = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), 618, 334, 174, 138, 0.02, 40, false, true);
+
+    // Movement
+    const this.groundAccel = 0.5;
+    const this.wallAccel = this.groundAccel / 8;
+    const this.airAccel = this.groundAccel / 2;
+
     Entity.call(this, game, 0, 400);
 }
 
-Unicorn.prototype = new Entity();
-Unicorn.prototype.constructor = Unicorn;
+KayNine.prototype = new Entity();
+KayNine.prototype.constructor = KayNine;
 
-Unicorn.prototype.update = function () {
+KayNine.prototype.update = function () {
     if (this.game.space) this.jumping = true;
     if (this.jumping) {
         if (this.jumpAnimation.isDone()) {
@@ -25,17 +42,17 @@ Unicorn.prototype.update = function () {
 
         //var height = jumpDistance * 2 * totalHeight;
         var height = totalHeight*(-4 * (jumpDistance * jumpDistance - jumpDistance));
-        this.y = this.ground - height;
+        this.yPos = this.ground - height;
     }
     Entity.prototype.update.call(this);
 }
 
-Unicorn.prototype.draw = function (ctx) {
+KayNine.prototype.draw = function (ctx) {
     if (this.jumping) {
-        this.jumpAnimation.drawFrame(this.game.clockTick, ctx, this.x + 17, this.y - 34);
+        this.jumpAnimation.drawFrame(this.game.clockTick, ctx, this.xPos + 17, this.yPos - 34);
     }
     else {
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos);
     }
     Entity.prototype.draw.call(this);
 }
