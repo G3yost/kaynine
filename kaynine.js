@@ -16,9 +16,6 @@ function KayNine(game) {
     this.wallHangRight = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false);
     this.wallHangLeft  = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), x, y, xlen, ylen, dur, frameCount, true, false);
 
-    this.animation = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), 0, 0, 206, 110, 0.02, 30, true, true);
-    this.jumpAnimation = new Animation(ASSET_MANAGER.getAsset("./img/FileName.png"), 618, 334, 174, 138, 0.02, 40, false, true);
-
     // Movement
     this.groundAccel = 0.5;
     this.wallAccel = this.groundAccel / 8;
@@ -48,17 +45,15 @@ KayNine.prototype.update = function () {
 
     // Modify position/state
 
-
+    if(this.xVel > 0)
 
     Entity.prototype.update.call(this);
 }
 
 KayNine.prototype.draw = function (ctx) {
-    if (this.jumping) {
-        this.jumpAnimation.drawFrame(this.game.clockTick, ctx, this.xPos + 17, this.yPos - 34);
-    }
-    else {
-        this.animation.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos);
-    }
+
+    if
+
+
     Entity.prototype.draw.call(this);
 }
