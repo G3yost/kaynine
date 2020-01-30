@@ -11,7 +11,7 @@ ASSET_MANAGER.downloadAll(function () {
     var bg = new Background(gameEngine, ASSET_MANAGER.getAsset("img/Background.png"));
 
     // Floors are about 190 in length ; 187 creates a nice "repeat" look
-    // Inefficient as hell and I'll ask about it 
+    // Inefficient as hell and I'll ask about it
     var f1 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 0, 500, false);
     var f2 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 187, 500, false);
     var f3 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 374, 500, false);
@@ -21,7 +21,8 @@ ASSET_MANAGER.downloadAll(function () {
 
     var f7 = new Floor (gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, false);
 
-   // var kayNine = new KayNine(gameEngine);
+    var kayNine = new KayNine(gameEngine);
+    gameEngine.addEntity(kayNine);
 
     gameEngine.addEntity(bg);
 
