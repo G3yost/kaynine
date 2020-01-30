@@ -51,7 +51,7 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
-if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
+if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
     // Modify accel/state
 // this.game.keyDownList;
@@ -62,7 +62,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
              if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel = -this.groundAccel; }
         else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel =  this.groundAccel; }
-    }/*
+        else if(this.game.keyDownList['a'] && this.game.keyDownList['d'])  { this.xAccel = this.xVel > 0 }
+    }
     // Wall move set
     else if(this.onWall) {
 
@@ -71,31 +72,38 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
              if(this.onWall === "right" && !this.game.keyDownList['d']) { this.onWall = false; }
         else if(this.onWall === "left"  && !this.game.keyDownList['a']) { this.onWall = false; }
 
-             if(this.onWall && this.game.keyDownList['w']) { this.yAccel =  this.wallAccel; }
-        else if(this.onWall && this.game.keyDownList['s']) { this.yAccel = -this.wallAccel; }
+             if(this.onWall && this.game.keyDownList['w']) { this.yAccel = -this.wallAccel; }
+        else if(this.onWall && this.game.keyDownList['s']) { this.yAccel =  this.wallAccel; }
     }
     // Air move set
     else {
 
         if(this.jumpReq && !this.keyDownList['space']) { this.jumpReq = false; }
 
-             if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel =  this.airAccel; }
-        else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel = -this.airAccel; }
+             if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel = -this.airAccel; }
+        else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel =  this.airAccel; }
     }
-*/
-    // Modify position/state
 
-    if(this.yPos >= this.ground) { this.yPos = this.ground; this.yVel = 0; this.yAccel = 0; }
-    else { }
-    this.yVel += this.yAccel - this.game.gravity;
-    this.yPos += this.yVel;
+    // Modify position/state
+    if(this.yPos >= this.ground) { this.yPos = this.ground; this.yVel = 0; this.yAccel = 0; this.onGround = true; }
+    else { this.yAccel += this.game.gravity; this.yVel += this.yAccel; this.yPos += this.yVel; this.onGround = false; }
+
+
+
+    if(this.xPos < this.leftWall) { this.xPos = this.leftWall; this.xVel = 0; this.xAccel = 0; }
+    else if(this.xPos > this.rightWall - 124) { this.xPos = this.rightWall - 124; this.xVel = 0; this.xAccel = 0; }
+    else {
+
+        if(this.xAccel > -1/128 && this.xAccel < 1/128) { this.xAccel = 0; }
+    }
 
     this.xVel += this.xAccel;
     this.xPos += this.xVel;
 
 
-    if(this.xVel >  this.xMax) { this.xVel =  this.xMax; }
+    if(this.xVel > this.xMax) { this.xVel =  this.xMax; }
     else if(this.xVel < -this.xMax) { this.xVel = -this.xMax; }
+    else { this.xVel += this.xAccel; this.xPos += this.xVel; }
 
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
