@@ -39,7 +39,7 @@ function KayNine(game) {
     this.wallAccel = this.groundAccel / 8;
     this.airAccel = this.groundAccel / 2;
 
-    this.ground = 600;
+    this.ground = 592;
     this.leftWall  = 50;
     this.rightWall = 750;
 
@@ -51,6 +51,7 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
+if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
 
     // Modify accel/state
 // this.game.keyDownList;
@@ -61,7 +62,7 @@ KayNine.prototype.update = function () {
 
              if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel = -this.groundAccel; }
         else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel =  this.groundAccel; }
-    }
+    }/*
     // Wall move set
     else if(this.onWall) {
 
@@ -81,20 +82,25 @@ KayNine.prototype.update = function () {
              if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel =  this.airAccel; }
         else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel = -this.airAccel; }
     }
-
+*/
     // Modify position/state
-    this.xVel += this.xAccel;
-    this.yVel += this.yAccel;
 
-    this.xPos += this.xVel;
+    if(this.yPos >= this.ground) { this.yPos = this.ground; this.yVel = 0; this.yAccel = 0; }
+    else { }
+    this.yVel += this.yAccel - this.game.gravity;
     this.yPos += this.yVel;
 
-    if(this.yPos > this.ground) { this.yPos = this.ground; this.yVel = 0; this.yAccel = 0; }
-         if(this.xVel >  this.xMax) { this.xVel =  this.xMax; }
+    this.xVel += this.xAccel;
+    this.xPos += this.xVel;
+
+
+    if(this.xVel >  this.xMax) { this.xVel =  this.xMax; }
     else if(this.xVel < -this.xMax) { this.xVel = -this.xMax; }
 
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
+
+if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
 
     Entity.prototype.update.call(this);
 }
@@ -103,8 +109,8 @@ KayNine.prototype.draw = function (ctx) {
 
     if (false) {}
 
-    else if(this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 2); }
-    else                      { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 2); }
+    else if(this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else                      { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
 
     Entity.prototype.draw.call(this);

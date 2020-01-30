@@ -39,6 +39,8 @@ function GameEngine() {
     this.groundFriction = 1;
     this.wallFriction = 1;
     this.airFriction = 0.1;
+
+    this.gravity = -1;
 }
 
 GameEngine.prototype.init = function (ctx) {
