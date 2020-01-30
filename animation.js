@@ -25,8 +25,6 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y, scaleBy) {
     var index = this.reverse ? this.frames - this.currentFrame() - 1 : this.currentFrame();
     var vindex = 0;
 
-console.log(this.spriteSheet);
-
     if ((index + 1) * this.frameWidth + this.startX > this.spriteSheet.width) {
         index -= Math.floor((this.spriteSheet.width - this.startX) / this.frameWidth);
         vindex++;

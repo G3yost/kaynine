@@ -1,18 +1,5 @@
 function KayNine(game) {
 
-    // Files
-    ASSET_MANAGER.queueDownload("./img/kay_nine_idle.png");
-    ASSET_MANAGER.queueDownload("./img/kay_nine_jumping.png");
-    ASSET_MANAGER.queueDownload("./img/kay_nine_running.png");
-    ASSET_MANAGER.queueDownload("./img/kay_nine_wall_climbing.png");
-    ASSET_MANAGER.queueDownload("./img/kay_nine_wall_hang.png");
-    ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump.png");
-
-    ASSET_MANAGER.queueDownload("./img/kay_nine_idle_temp.png");    // !!! CHANGE FILE NAME IN ANIM
-    ASSET_MANAGER.queueDownload("./img/kay_nine_running_temp.png"); // !!! CHANGE FILE NAME IN ANIM
-    ASSET_MANAGER.queueDownload("./img/kay_nine_jumping_temp.png"); // !!! CHANGE FILE NAME IN ANIM
-
-
     // Animations
     this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_temp.png"), 0, 0, 128, 128, 0.2, 1, true, false);
     this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_temp.png"), 0, 0, 128, 128, 0.2, 1, true, false);
@@ -114,11 +101,10 @@ KayNine.prototype.update = function () {
 
 KayNine.prototype.draw = function (ctx) {
 
-console.log("KayNine");
     if (false) {}
 
-    else if(this.facingRight) { console.log("draw right"); this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 2); }
-    else                      { console.log("draw right"); this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 2); }
+    else if(this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 2); }
+    else                      { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 2); }
 
 
     Entity.prototype.draw.call(this);
