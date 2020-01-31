@@ -28,8 +28,8 @@ function KayNine(game) {
     this.onWall = false;
 
     // Movement
-    this.xAccel = 0;
-    this.yAccel = 0;
+    this.xAccel = 2;
+    this.yAccel = 2;
 
     this.xMax = 10;
 
@@ -53,6 +53,8 @@ KayNine.prototype.update = function () {
 
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
+/*
+
     // Modify accel/state
 // this.game.keyDownList;
     // Ground move set
@@ -62,7 +64,6 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
              if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xAccel = -this.groundAccel; }
         else if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xAccel =  this.groundAccel; }
-        else if(this.game.keyDownList['a'] && this.game.keyDownList['d'])  { this.xAccel = this.xVel > 0 }
     }
     // Wall move set
     else if(this.onWall) {
@@ -88,7 +89,10 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
     if(this.yPos >= this.ground) { this.yPos = this.ground; this.yVel = 0; this.yAccel = 0; this.onGround = true; }
     else { this.yAccel += this.game.gravity; this.yVel += this.yAccel; this.yPos += this.yVel; this.onGround = false; }
 
+    if(this.onGround) {
 
+        this.xAccel += this.facingRight ? this.game.groundFriction : -this.game.groundFriction;
+    }
 
     if(this.xPos < this.leftWall) { this.xPos = this.leftWall; this.xVel = 0; this.xAccel = 0; }
     else if(this.xPos > this.rightWall - 124) { this.xPos = this.rightWall - 124; this.xVel = 0; this.xAccel = 0; }
@@ -98,12 +102,83 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
     }
 
     this.xVel += this.xAccel;
-    this.xPos += this.xVel;
 
 
     if(this.xVel > this.xMax) { this.xVel =  this.xMax; }
     else if(this.xVel < -this.xMax) { this.xVel = -this.xMax; }
     else { this.xVel += this.xAccel; this.xPos += this.xVel; }
+
+    if(this.xVel > -0.125 && this.xVel < 0.125) { this.xVel = 0;}
+
+    if(this.xVel > 0) { this.facingRight =  true; }
+    if(this.xVel < 0) { this.facingRight = false; }
+
+    this.xPos += this.xVel;
+
+*/
+
+    // Ground move set
+    if(this.onGround) {
+
+        if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xVel -= this.xAccel; }
+        if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xVel += this.xAccel; }
+
+
+        if(this.xVel > 0) {
+
+            this.xVel -= this.game.groundFriction;
+            if(this.xVel > this.xMax) {
+                this.xVel = this.xMax;
+            }
+        }
+
+        if(this.xVel < 0) {
+
+            this.xVel += this.game.groundFriction;
+            if(this.xVel < -this.xMax) {
+                this.xVel = -this.xMax;
+            }
+        }
+    }
+
+    if (this.onWall) {
+
+        this.yVel = 0;
+
+        if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
+        if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
+
+        if(this.facingRight && this.game.keyDownList['space'])  { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+
+        if(!this.facingRight && this.game.keyDownList['space']) { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+    }
+
+    if(this.xVel === this.xPre && this.xVel != this.xMax && this.xVel != -this.xMax) { this.xVel = 0; }
+
+    this.xPre  = this.xVel;
+    this.xPos += this.xVel;
+    this.yPos -= this.yVel;
+
+    if(this.xPos < this.leftWall) { this.xPos = this.leftWall; this.xVel = 0; this.onWall = true; }
+    else if(this.xPos > this.rightWall - 124) { this.xPos = this.rightWall - 124; this.xVel = 0; this.onWall = true; }
+    else { this.onWall = false; }
+
+    if(this.yPos >= this.ground) {
+
+        this.yPos = this.ground;
+        this.yVel = 0;
+
+        if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
+        if(this.game.keyDownList['space'] && !this.jumpREQ) { this.yVel = this.jumpVelocity; this.jumpREQ = true; }
+
+    } else {
+
+        if(this.jumpREQ && this.game.keyDownList['space']) { this.yVel -= this.game.gravity / 2; }
+        else { this.yVel -= this.game.gravity; this.jumpREQ = false; }
+    }
+
+    if(this.xPos > this.rightWall - 125 || this.xPos < this.leftWall + 1) { this.onWall == true; }
+    else { this.onWall = false; }
 
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
