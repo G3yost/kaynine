@@ -22,6 +22,8 @@ function KayNine(game) {
     this.wallJumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump.png"), 0, 0, 128, 128, 0.2, 1, true, false);
     this.wallJumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump.png"), 0, 0, 128, 128, 0.2, 1, true, false);
 
+    //this.animArr[] = {this.idleRight, this.idleLeft, this.jumpRight, this.jumpLeft, this.fallingRight, this.fallingLeft, this.walkRight, this.walkLeft, this.wallClimbRight, this.wallClimbLeft, this.wallHangRight, this.wallHangLeft, this.wallJumpRight, this.wallJumpLeft};
+
     // Status
     this.jumpReq = false;
     this.onGround = true;
@@ -139,9 +141,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                 this.xVel = -this.xMax;
             }
         }
-    }
-
-    if (this.onWall) {
+    } else if (this.onWall) {
 
         this.yVel = 0;
 
@@ -152,6 +152,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
         if(!this.facingRight && this.game.keyDownList['space']) { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
     }
+
+    else
 
     if(this.xVel === this.xPre && this.xVel != this.xMax && this.xVel != -this.xMax) { this.xVel = 0; }
 
@@ -165,6 +167,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
     if(this.yPos >= this.ground) {
 
+        this.onGround = true;
         this.yPos = this.ground;
         this.yVel = 0;
 
@@ -172,6 +175,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         if(this.game.keyDownList['space'] && !this.jumpREQ) { this.yVel = this.jumpVelocity; this.jumpREQ = true; }
 
     } else {
+
+        this.onGround = false;
 
         if(this.jumpREQ && this.game.keyDownList['space']) { this.yVel -= this.game.gravity / 2; }
         else { this.yVel -= this.game.gravity; this.jumpREQ = false; }
@@ -190,10 +195,19 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
 KayNine.prototype.draw = function (ctx) {
 
-    if (false) {}
+    if(false) {}
 
-    else if(this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else                      { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkRight"); }
+    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkLeft"); }
+    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("idleRight"); }
+    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("idleLeft"); }
+    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallClimbRight"); }
+    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallClimbLeft"); }
+    else if (this.onWall && this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallHangRight"); }
+    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallHangLeft"); }
+    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpRight"); }
+    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpLeft"); }
+
 
 
     Entity.prototype.draw.call(this);
