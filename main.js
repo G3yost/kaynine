@@ -55,6 +55,7 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("img/background.png");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
+ASSET_MANAGER.queueDownload("img/spike.png");
 
 // Files
     //ASSET_MANAGER.queueDownload("./img/kay_nine_idle_right.png");
@@ -94,6 +95,8 @@ ASSET_MANAGER.downloadAll(function () {
 
     var f7 = new Floor (gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, false);
 
+    var s1 = new Spike(gameEngine, ASSET_MANAGER.getAsset("img/spike.png"), 120, 600);
+
     var kayNine = new KayNine(gameEngine);
     var tempAnimation = new TempAnimation(gameEngine);
 
@@ -106,6 +109,8 @@ ASSET_MANAGER.downloadAll(function () {
     gameEngine.addEntity(f5);
     gameEngine.addEntity(f6);
     gameEngine.addEntity(f7);
+
+    gameEngine.addEntity(s1);
 
     gameEngine.addEntity(kayNine);
     gameEngine.addEntity(tempAnimation);
