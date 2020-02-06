@@ -96,7 +96,7 @@ ASSET_MANAGER.downloadAll(function () {
     var f7 = new Floor (gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, 187, 50);
 
     var s1 = new Spike(gameEngine, ASSET_MANAGER.getAsset("img/spike.png"), 120, 600, 50, 50);
-    
+
     var kayNine = new KayNine(gameEngine);
     var tempAnimation = new TempAnimation(gameEngine);
 

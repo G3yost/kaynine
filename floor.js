@@ -17,6 +17,7 @@ Floor.prototype.update = function () {
 }
 
 Floor.prototype.draw = function (ctx) {
+this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
     ctx.drawImage(this.spritesheet, this.xPos, this.yPos);
     Entity.prototype.draw.call(this);
 }

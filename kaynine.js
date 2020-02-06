@@ -110,13 +110,11 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
-console.log(this.boundingBox.top)
+console.log("\n");
 
     for (const ent in this.game.entities) {
-console.log(ent);
-        if (this.boundingBox.collide(ent)) {
 
-console.log("\n\n\n\n\n\nent\n\n\n\n\n\n");
+        if (this.boundingBox.collide(this.game.entities[ent].boundingBox)) {
 
             switch (ent.type) {
 
@@ -170,6 +168,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
 KayNine.prototype.draw = function (ctx) {
 
+this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
+
     if(false) {}
 
     else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkRight"); }
@@ -186,8 +186,6 @@ KayNine.prototype.draw = function (ctx) {
 */
     else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpRight"); }
     else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpLeft"); }
-
-
 
     Entity.prototype.draw.call(this);
 }
