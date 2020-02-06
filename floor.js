@@ -1,6 +1,6 @@
-function Floor(game, spritesheet, xPosition, yPosition, move){
+function Floor(game, spritesheet, xPosition, yPosition, width, height){
     //this.moving = move;
-    Entity.call(this, game, xPosition, yPosition);
+    Entity.call(this, game, xPosition, yPosition, width, height);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
 }
