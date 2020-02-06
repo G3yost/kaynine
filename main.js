@@ -86,17 +86,17 @@ ASSET_MANAGER.downloadAll(function () {
 
     // Floors are about 190 in length ; 187 creates a nice "repeat" look
     // Inefficient as hell and I'll ask about it
-    var f1 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 0, 500, false);
-    var f2 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 187, 500, false);
-    var f3 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 374, 500, false);
-    var f4 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 561, 500, false);
-    var f5 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 748, 500, false);
-    var f6 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 935, 500, false);
+    var f1 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 0, 500, 187, 50);
+    var f2 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 187, 500, 187, 50);
+    var f3 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 374, 500, 187, 50);
+    var f4 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 561, 500, 187, 50);
+    var f5 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 748, 500, 187, 50);
+    var f6 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 935, 500, 187, 50);
 
-    var f7 = new Floor (gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, false);
+    var f7 = new Floor (gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, 187, 50);
 
-    var s1 = new Spike(gameEngine, ASSET_MANAGER.getAsset("img/spike.png"), 120, 600);
-
+    var s1 = new Spike(gameEngine, ASSET_MANAGER.getAsset("img/spike.png"), 120, 600, 50, 50);
+    
     var kayNine = new KayNine(gameEngine);
     var tempAnimation = new TempAnimation(gameEngine);
 
