@@ -1,7 +1,9 @@
-function Spike(game, spritesheet, xPosition, yPosition){
-    Entity.call(this, game, xPosition, yPosition);
+function Spike(game, spritesheet, xPosition, yPosition, width, height){
+    Entity.call(this, game, xPosition, yPosition, width, height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
+
+    this.type = "spike";
 }
 
 Spike.prototype = new Entity();
@@ -15,7 +17,7 @@ Spike.prototype.update = function () {
 
 
 Spike.prototype.draw = function (ctx) {
-    ctx.drawImage(this.spritesheet, 
+    ctx.drawImage(this.spritesheet,
                     this.xPos, this.yPos);
     Entity.prototype.draw.call(this);
 }

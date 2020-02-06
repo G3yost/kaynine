@@ -1,8 +1,9 @@
-function Entity(game, x, y, width, height) {
+function Entity(game, x, y, width, height, parent) {
     this.game = game;
 
     // Game world
     this.facingRight = true;
+    this.parent = parent;
 
     this.xPos = x;
     this.xVel = 0;
@@ -10,25 +11,12 @@ function Entity(game, x, y, width, height) {
     this.yPos = y;
     this.yVel = 0;
 
-    this.width  = width;
-    this.height = height;
-
-    this.left   = this.xPos;
-    this.right  = this.xPos + width;
-    this.top    = this.yPos;
-    this.bottom = this.yPos + height;
+    this.boundingBox = new BoundingBox(x, y, width, height, parent);
 
     this.removeFromWorld = false;
 }
 
 Entity.prototype.update = function () {
-
-    this.left   = this.xPos;
-    this.right  = this.xPos + width;
-    this.top    = this.yPos;
-    this.bottom = this.yPos + height;
-
-    // COLLISION LOGIC GOES HERE
 }
 
 Entity.prototype.draw = function (ctx) {

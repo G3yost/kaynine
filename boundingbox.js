@@ -1,4 +1,4 @@
-function BoundingBox(x, y, width, height, type) {
+function BoundingBox(x, y, width, height, parent) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -9,10 +9,10 @@ function BoundingBox(x, y, width, height, type) {
     this.right = this.left + width;
     this.bottom = this.top + height;
 
-    this.type = type;
+    this.parent = parent;
 }
 
 BoundingBox.prototype.collide = function (oth) {
-    if (this.right > oth.left && this.left < oth.right && this.top < oth.bottom && this.bottom > oth.top) return oth.type;
+    if (this.right > oth.left && this.left < oth.right && this.top < oth.bottom && this.bottom > oth.top) return true;
     return false;
 }

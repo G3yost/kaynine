@@ -1,8 +1,10 @@
 function Floor(game, spritesheet, xPosition, yPosition, width, height){
     //this.moving = move;
-    Entity.call(this, game, xPosition, yPosition, width, height);
+    Entity.call(this, game, xPosition, yPosition, width, height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
+
+    this.type = "floor";
 }
 
 Floor.prototype = new Entity();
