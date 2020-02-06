@@ -110,20 +110,17 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
-console.log("\n");
-
     for (const ent in this.game.entities) {
 
-        if (this.boundingBox.collide(this.game.entities[ent].boundingBox)) {
+        entity = this.game.entities[ent];
 
-            switch (ent.type) {
+        if (this.boundingBox.collide(entity.boundingBox)) {
 
-                case "floor": if (
-                    (this.boundingBox.top   > ent.boundingBox.bottom && this.boundingBox.top    < ent.boundingBox.top) ||
-                    (this.boudingBox.bottom >ent.boudingBox.bottom   && this.boundingBox.bottom < ent.boundingBox.top)) {
+            switch (entity.type) {
 
-                    console.log("Collision triggered from side");
-                }
+                case "floor":
+                    console.log("Touching Floor");
+
                 break;
 
 
@@ -172,20 +169,20 @@ this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundin
 
     if(false) {}
 
-    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkRight"); }
-    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("walkLeft"); }
+    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
-    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("idleRight"); }
-    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("idleLeft"); }
+    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 /*
-    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallClimbRight"); }
-    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallClimbLeft"); }
+    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
-    else if (this.onWall && this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallHangRight"); }
-    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("wallHangLeft"); }
+    else if (this.onWall && this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 */
-    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpRight"); }
-    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("jumpLeft"); }
+    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
     Entity.prototype.draw.call(this);
 }
