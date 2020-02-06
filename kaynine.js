@@ -110,20 +110,23 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
-    for each (var ent in this.game.entities) {
+    for (const ent in this.game.entities) {
 
-        if (this.boundingBox.collide(ent))
+        if (this.boundingBox.collide(ent)) {
 
-        switch (ent.type) {
+            switch (ent.type) {
 
-            case "floor": if (
-                (this.boundingBox.top   > ent.boundingBox.bottom && this.boundingBox.top    < ent.boundingBox.top) ||
-                (this.boudingBox.bottom >ent.boudingBox.bottom   && this.boundingBox.bottom < ent.boundingBox.top)) {
+                case "floor": if (
+                    (this.boundingBox.top   > ent.boundingBox.bottom && this.boundingBox.top    < ent.boundingBox.top) ||
+                    (this.boudingBox.bottom >ent.boudingBox.bottom   && this.boundingBox.bottom < ent.boundingBox.top)) {
 
-                console.log("Collision triggered from side");
+                    console.log("Collision triggered from side");
+                }
+                break;
+
+
+                default:
             }
-
-            default:
         }
         // if touching get relative velocity to determine side
     }
