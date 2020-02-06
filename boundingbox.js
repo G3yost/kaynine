@@ -1,6 +1,5 @@
 function BoundingBox(x, y, width, height, parent) {
-    this.x = x;
-    this.y = y;
+
     this.width = width;
     this.height = height;
 
@@ -13,9 +12,6 @@ function BoundingBox(x, y, width, height, parent) {
 }
 
 BoundingBox.prototype.update = function (x, y) {
-
-    this.x = x;
-    this.y = y;
 
     this.left = x;
     this.top = y;

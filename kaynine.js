@@ -110,9 +110,13 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
-    for (const ent in this.game.entities) {
+console.log(this.boundingBox.top)
 
+    for (const ent in this.game.entities) {
+console.log(ent);
         if (this.boundingBox.collide(ent)) {
+
+console.log("\n\n\n\n\n\nent\n\n\n\n\n\n");
 
             switch (ent.type) {
 
