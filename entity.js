@@ -22,6 +22,13 @@ function Entity(game, x, y, width, height) {
 }
 
 Entity.prototype.update = function () {
+
+    this.left   = this.xPos;
+    this.right  = this.xPos + width;
+    this.top    = this.yPos;
+    this.bottom = this.yPos + height;
+
+    // COLLISION LOGIC GOES HERE
 }
 
 Entity.prototype.draw = function (ctx) {
@@ -32,13 +39,6 @@ Entity.prototype.draw = function (ctx) {
         this.game.ctx.stroke();
         this.game.ctx.closePath();
     }
-
-    this.left   = this.xPos;
-    this.right  = this.xPos + width;
-    this.top    = this.yPos;
-    this.bottom = this.yPos + height;
-
-    // COLLISION LOGIC GOES HERE
 }
 
 Entity.prototype.rotateAndCache = function (image, angle) {
