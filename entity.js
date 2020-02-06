@@ -1,4 +1,4 @@
-function Entity(game, x, y) {
+function Entity(game, x, y, width, height) {
     this.game = game;
 
     // Game world
@@ -9,6 +9,14 @@ function Entity(game, x, y) {
 
     this.yPos = y;
     this.yVel = 0;
+
+    this.width  = width;
+    this.height = height;
+
+    this.left   = this.xPos;
+    this.right  = this.xPos + width;
+    this.top    = this.yPos;
+    this.bottom = this.yPos + height;
 
     this.removeFromWorld = false;
 }
@@ -24,6 +32,13 @@ Entity.prototype.draw = function (ctx) {
         this.game.ctx.stroke();
         this.game.ctx.closePath();
     }
+
+    this.left   = this.xPos;
+    this.right  = this.xPos + width;
+    this.top    = this.yPos;
+    this.bottom = this.yPos + height;
+
+    // COLLISION LOGIC GOES HERE
 }
 
 Entity.prototype.rotateAndCache = function (image, angle) {
