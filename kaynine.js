@@ -107,30 +107,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
     this.yPos -= this.yVel;
 
 
-// Complex Collision with all entities.
-    this.boundingBox.update(this.xPos, this.yPos);
-
-    for (const ent in this.game.entities) {
-
-        entity = this.game.entities[ent];
-
-        if (this.boundingBox.collide(entity.boundingBox)) {
-
-            switch (entity.type) {
-
-                case "floor":
-                    console.log("Touching Floor");
-
-                break;
-
-
-                default:
-            }
-        }
-        // if touching get relative velocity to determine side
-    }
-
-// Simple Collision with hard wall and floor.
+    // Simple Collision with hard wall and floor.
     if(this.xPos < this.leftWall) { this.xPos = this.leftWall; this.xVel = 0; this.onWall = true; }
     else if(this.xPos > this.rightWall - 124) { this.xPos = this.rightWall - 124; this.xVel = 0; this.onWall = true; }
     else { this.onWall = false; }
@@ -152,6 +129,71 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         else { this.yVel -= this.game.gravity; this.jumpREQ = false; }
     }
 // End
+
+// Complex Collision with all entities.
+    this.boundingBox.update(this.xPos, this.yPos);
+
+    for (const ent in this.game.entities) {
+
+        entity = this.game.entities[ent];
+
+        if (this.boundingBox.collide(entity.boundingBox)) {
+
+            switch (entity.type) {
+
+                case "floor":
+                    console.log("Touching Floor");
+                    if(this.boundingBox.bottom > entity.boundingBox.top){ // prioritize "on top" collision
+                        this.yVel = 0;
+                        this.yAccel = 0;
+                        this.gravity = 0;
+                        this.onGround = true;
+                        this.jumpREQ = true;
+                    } else if(this.boundingBox.right > entity.boundingBox.left || 
+                        this.boundingBox.left < entity.boundingBox.right) { // next level is "left right bonk" collision
+                            this.xVel = 0;
+                            this.xAccel = 0;
+                            this.onWall = true;
+                        } else { // this is the last case ; "hit bottom" collision
+                            this.yVel = 0;
+                            this.yAccel = 0;
+                            this.yPos -= 20;
+                            this.onGround = false;
+                        }
+                break;
+
+                /* case "spike":
+                        this.getRekt; he will hopefully eventually die when he has a life to lose >:) 
+                break; */
+
+                default:
+            }
+        }
+        // if touching get relative velocity to determine side
+    }
+
+// // Simple Collision with hard wall and floor.
+//     if(this.xPos < this.leftWall) { this.xPos = this.leftWall; this.xVel = 0; this.onWall = true; }
+//     else if(this.xPos > this.rightWall - 124) { this.xPos = this.rightWall - 124; this.xVel = 0; this.onWall = true; }
+//     else { this.onWall = false; }
+
+//     if(this.yPos >= this.ground) {
+
+//         this.onGround = true;
+//         this.yPos = this.ground;
+//         this.yVel = 0;
+
+//         if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
+//         if(this.game.keyDownList['space'] && !this.jumpREQ) { this.yVel = this.jumpVelocity; this.jumpREQ = true; }
+
+//     } else {
+
+//         this.onGround = false;
+
+//         if(this.jumpREQ && this.game.keyDownList['space']) { this.yVel -= this.game.gravity / 2; }
+//         else { this.yVel -= this.game.gravity; this.jumpREQ = false; }
+//     }
+// // End
 
 
 
