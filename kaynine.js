@@ -45,8 +45,8 @@ function KayNine(game) {
     this.airAccel = this.groundAccel / 2;
 
     // this.ground = 592;
-    this.leftWall  = 50;
-    this.rightWall = 750;
+    // this.leftWall  = 50;
+    // this.rightWall = 750;
 
     Entity.call(this, game, 100, 300, this.width, this.height, this);
 }
@@ -68,7 +68,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         if(this.game.keyDownList['space'] && !this.jumpREQ) { this.yVel = this.jumpVelocity; this.jumpREQ = true; this.onGround = false; }
 
         if(this.xVel > 0) {
-console.log("Evaluating friction");
+
             this.xVel -= this.game.groundFriction;
             if(this.xVel > this.xMax) {
                 this.xVel = this.xMax;
@@ -98,8 +98,8 @@ console.log("Evaluating friction");
 
     else {
 
-        if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xVel -= this.xAccel * this.game.airFriction; console.log("Accel = " + this.xAccel * this.game.airFriction, ", Vel = " + this.xVel); }
-        if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xVel += this.xAccel * this.game.airFriction; console.log("Accel = " + this.xAccel * this.game.airFriction, ", Vel = " + this.xVel); }
+        if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xVel -= this.xAccel * this.game.airFriction; }
+        if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xVel += this.xAccel * this.game.airFriction; }
 
         if(this.jumpREQ && this.game.keyDownList['space']) { this.yVel -= this.game.gravity / 2; }
         else { this.yVel -= this.game.gravity; this.jumpREQ = false; }
@@ -123,16 +123,22 @@ console.log("Evaluating friction");
 
         if (this.boundingBox.collide(entity.boundingBox)) {
 
+            state = "n/a";
+
             switch (entity.type) {
 
                 case "floor":
                     console.log("Touching Floor");
-                    if(this.boundingBox.bottom >= entity.boundingBox.top){ // prioritize "on top" collision
+/*
+                    if(this.boundingBox.top > entity.boundingBox.top) {
+                        this.yPos = entity.boundingBox.bottom;
+                        this.yVel = 0;
+                        this.yAccel = 0;
+                    } else if(this.boundingBox.bottom >= entity.boundingBox.top){ // prioritize "on top" collision
                         this.yPos = entity.boundingBox.top - this.boundingBox.height + 1;
                         this.yVel = 0;
                         this.yAccel = 0;
                         this.onGround = true;
-                        // this.jumpREQ = true;
                     } else if(this.boundingBox.right > entity.boundingBox.left || this.boundingBox.left < entity.boundingBox.right) { // next level is "left right bonk" collision
                         this.xVel = 0;
                         this.xAccel = 0;
@@ -143,6 +149,44 @@ console.log("Evaluating friction");
                         this.yPos -= 20;
                         this.onGround = false;
                     }
+*/
+                    if(this.boundingBox.right > entity.boundingBox.left && this.boundingBox.bottom > entity.boundingBox.top) {
+
+                        if(this.boundingBox.right - entity.boundingBox.left >= this.boundingBox.bottom - entity.boundingBox.top) { state = "top"; } else { state = "left"; }
+                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.bottom > entity.boundingBox.top) {
+
+                        if(this.boundingBox.left - entity.boundingBox.right >= this.boundingBox.bottom - entity.boundingBox.top) { state = "right"; } else { state = "top"; }
+                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.top > entity.boundingBox.bottom) {
+
+                        if(entity.boundingBox.right - this.boundingBox.left >= entity.boundingBox.bottom - this.boundingBox.top) { state = "bottom"; } else { state = "right"; }
+                    } else if(false) {} // FIX HERE Hero top right inside Entity top left
+
+                    switch(state) {
+                        case "top"    :
+                                this.yPos = entity.boundingBox.top - this.boundingBox.height + 1;
+                                this.yVel = 0;
+                                this.yAccel = 0;
+                                this.onGround = true;
+                            break;
+                        case "bottom" :
+                                this.yPos = entity.boundingBox.bottom;
+                                this.yVel = 0;
+                                this.yAccel = 0;
+                            break;
+                        case "left"   :
+                                this.xPos = entity.boundingBox.left - this.boundingBox.width;
+                                this.xVel = 0;
+                                this.xPos = 0;
+                                this.onWall = true;
+                            break;
+                        case "right"  :
+                                this.xPos = entity.boundingBox.right;
+                                this.xVel = 0;
+                                this.xPos = 0;
+                                this.onWall = true;
+                            break;
+                    }
+
                 break;
 
                 /* case "spike":
