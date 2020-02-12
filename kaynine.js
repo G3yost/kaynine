@@ -82,9 +82,15 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                 this.xVel = -this.xMax;
             }
         }
+
+        if(this.xVel === this.xPre && this.xVel != this.xMax && this.xVel != -this.xMax) { this.xVel = 0; }
+
     } else if (this.onWall) {
 
         this.yVel = 0;
+
+        if(this.facingRight  && !(this.game.keyDownList['d'] && !this.game.keyDownList['a'])) { this.xPos = this.xPos - 1; }
+        if(!this.facingRight && !(this.game.keyDownList['a'] && !this.game.keyDownList['d'])) { this.xPos = this.xPos + 1; }
 
         if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
         if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
@@ -105,14 +111,11 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         else { this.yVel -= this.game.gravity; this.jumpREQ = false; }
     }
 
-    if(this.xVel === this.xPre && this.xVel != this.xMax && this.xVel != -this.xMax && this.onGround) { this.xVel = 0; }
-
     this.lastBox.update(this.xPos, this.yPos);
 
     this.xPre  = this.xVel;
     this.xPos += this.xVel;
     this.yPos -= this.yVel;
-
 // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
@@ -130,78 +133,31 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
             switch (entity.type) {
 
                 case "floor":
-                    console.log("Touching Floor");
-/*
-                    if(this.boundingBox.top > entity.boundingBox.top) {
-                        this.yPos = entity.boundingBox.bottom;
-                        this.yVel = 0;
-                        this.yAccel = 0;
-                    } else if(this.boundingBox.bottom >= entity.boundingBox.top){ // prioritize "on top" collision
-                        this.yPos = entity.boundingBox.top - this.boundingBox.height + 1;
-                        this.yVel = 0;
-                        this.yAccel = 0;
-                        this.onGround = true;
-                    } else if(this.boundingBox.right > entity.boundingBox.left || this.boundingBox.left < entity.boundingBox.right) { // next level is "left right bonk" collision
-                        this.xVel = 0;
-                        this.xAccel = 0;
-                        this.onWall = true;
-                    } else { // this is the last case ; "hit bottom" collision
-                        this.yVel = 0;
-                        this.yAccel = 0;
-                        this.yPos -= 20;
-                        this.onGround = false;
-                    }
-*/
+                console.log("Touching Floor");
+                         if(this.lastBox.bottom <= entity.lastBox.top)    { state = "top"; }
+                    else if(this.lastBox.right  <= entity.lastBox.left)   { state = "left"; }
+                    else if(this.lastBox.left   >= entity.lastBox.right)  { state = "right"; }
+                    else if(this.lastBox.top    >= entity.lastBox.bottom) { state = "bottom"; }
+                    else { console.log("Error on collision side")}
 
-     if(this.lastBox.bottom <= entity.lastBox.top)    { state = "top"; }
-else if(this.lastBox.right  <= entity.lastBox.left)   { state = "left"; }
-else if(this.lastBox.left   >= entity.lastBox.right)  { state = "right"; }
-else if(this.lastBox.top    >= entity.lastBox.bottom) { state = "bottom"; }
-else { console.log("Error on collision side")}
-
-console.log(state);
-
-/*
-                    if(this.boundingBox.right > entity.boundingBox.left && this.boundingBox.bottom > entity.boundingBox.top) { // Top Left
-
-                        if(this.boundingBox.right - entity.boundingBox.left >= this.boundingBox.bottom - entity.boundingBox.top) { state = "top"; } else { state = "left"; }
-
-                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.bottom > entity.boundingBox.top) { // Top Right
-
-                        if(entity.boundingBox.right - this.boundingBox.left >= this.boundingBox.bottom - entity.boundingBox.top) { state = "top"; } else { state = "right"; }
-
-                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.top > entity.boundingBox.bottom) { // Bottom Right
-
-                        if(entity.boundingBox.right - this.boundingBox.left >= entity.boundingBox.bottom - this.boundingBox.top) { state = "bottom"; } else { state = "right"; }
-
-                    } else { // Bottom Left
-
-                        if(this.boundingBox.right - entity.boundingBox.left >= entity.boundingBox.bottom - this.boundingBox.top) { state = "bottom"; } else { state = "left"}
-
-                    }
-*/
                     switch(state) {
                         case "top"    :
                                 this.yPos = entity.boundingBox.top - this.boundingBox.height;
                                 this.yVel = 0;
-                                this.yAccel = 0;
                                 this.onGround = true;
                             break;
                         case "bottom" :
                                 this.yPos = entity.boundingBox.bottom;
                                 this.yVel = 0;
-                                this.yAccel = 0;
                             break;
                         case "left"   :
                                 this.xPos = entity.boundingBox.left - this.boundingBox.width;
                                 this.xVel = 0;
-                                this.xPos = 0;
                                 this.onWall = true;
                             break;
                         case "right"  :
                                 this.xPos = entity.boundingBox.right;
                                 this.xVel = 0;
-                                this.xPos = 0;
                                 this.onWall = true;
                             break;
                     }
@@ -221,6 +177,7 @@ console.log(state);
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
 
+console.log(["xPos = " + this.xPos, "yPos = " + this.yPos])
 console.log(["Ground = " + this.onGround, "Wall = " + this.onWall]);
 
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
