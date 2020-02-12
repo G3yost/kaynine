@@ -12,6 +12,7 @@ function Entity(game, x, y, width, height, parent) {
     this.yVel = 0;
 
     this.boundingBox = new BoundingBox(x, y, width, height, parent);
+    this.lastBox = new BoundingBox(x, y, width, height, parent);
 
     this.removeFromWorld = false;
 }

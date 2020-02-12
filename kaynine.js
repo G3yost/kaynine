@@ -107,6 +107,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
     if(this.xVel === this.xPre && this.xVel != this.xMax && this.xVel != -this.xMax && this.onGround) { this.xVel = 0; }
 
+    this.lastBox.update(this.xPos, this.yPos);
+
     this.xPre  = this.xVel;
     this.xPos += this.xVel;
     this.yPos -= this.yVel;
@@ -150,20 +152,37 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                         this.onGround = false;
                     }
 */
-                    if(this.boundingBox.right > entity.boundingBox.left && this.boundingBox.bottom > entity.boundingBox.top) {
+
+     if(this.lastBox.bottom <= entity.lastBox.top)    { state = "top"; }
+else if(this.lastBox.right  <= entity.lastBox.left)   { state = "left"; }
+else if(this.lastBox.left   >= entity.lastBox.right)  { state = "right"; }
+else if(this.lastBox.top    >= entity.lastBox.bottom) { state = "bottom"; }
+else { console.log("Error on collision side")}
+
+console.log(state);
+
+/*
+                    if(this.boundingBox.right > entity.boundingBox.left && this.boundingBox.bottom > entity.boundingBox.top) { // Top Left
 
                         if(this.boundingBox.right - entity.boundingBox.left >= this.boundingBox.bottom - entity.boundingBox.top) { state = "top"; } else { state = "left"; }
-                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.bottom > entity.boundingBox.top) {
 
-                        if(this.boundingBox.left - entity.boundingBox.right >= this.boundingBox.bottom - entity.boundingBox.top) { state = "right"; } else { state = "top"; }
-                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.top > entity.boundingBox.bottom) {
+                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.bottom > entity.boundingBox.top) { // Top Right
+
+                        if(entity.boundingBox.right - this.boundingBox.left >= this.boundingBox.bottom - entity.boundingBox.top) { state = "top"; } else { state = "right"; }
+
+                    } else if(this.boundingBox.left < entity.boundingBox.right && this.boundingBox.top > entity.boundingBox.bottom) { // Bottom Right
 
                         if(entity.boundingBox.right - this.boundingBox.left >= entity.boundingBox.bottom - this.boundingBox.top) { state = "bottom"; } else { state = "right"; }
-                    } else if(false) {} // FIX HERE Hero top right inside Entity top left
 
+                    } else { // Bottom Left
+
+                        if(this.boundingBox.right - entity.boundingBox.left >= entity.boundingBox.bottom - this.boundingBox.top) { state = "bottom"; } else { state = "left"}
+
+                    }
+*/
                     switch(state) {
                         case "top"    :
-                                this.yPos = entity.boundingBox.top - this.boundingBox.height + 1;
+                                this.yPos = entity.boundingBox.top - this.boundingBox.height;
                                 this.yVel = 0;
                                 this.yAccel = 0;
                                 this.onGround = true;
@@ -201,6 +220,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
+
+console.log(["Ground = " + this.onGround, "Wall = " + this.onWall]);
 
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
 
