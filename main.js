@@ -58,7 +58,7 @@ var ASSET_MANAGER = new AssetManager();
 ASSET_MANAGER.queueDownload("img/background.png");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
 ASSET_MANAGER.queueDownload("img/spike.png");
-//ASSET_MANAGER.queueDownload("img/flag.png");
+ASSET_MANAGER.queueDownload("img/flag.png");
 
 // Files
     //ASSET_MANAGER.queueDownload("./img/kay_nine_idle_right.png");

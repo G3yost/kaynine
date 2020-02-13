@@ -199,9 +199,9 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
                 break;
 
-                /* case "spike":
-                        this.getRekt; he will hopefully eventually die when he has a life to lose >:)
-                break; */
+                case "goal":
+                        console.log("Victory");
+                break; 
 
                 default:
             }
