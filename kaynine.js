@@ -1,4 +1,4 @@
-function KayNine(game) {
+function KayNine(game, xPos, yPos) {
 
     this.type = "kaynine";
 
@@ -48,7 +48,7 @@ function KayNine(game) {
     // this.leftWall  = 50;
     // this.rightWall = 750;
 
-    Entity.call(this, game, 100, 300, this.width, this.height, this);
+    Entity.call(this, game, xPos, yPos, this.width, this.height, this);
 }
 
 KayNine.prototype = new Entity();
@@ -57,11 +57,47 @@ KayNine.prototype.constructor = KayNine;
 KayNine.prototype.update = function () {
 
 
+// !!!!!!!! DELETE FOR REAL LEVELS
+if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
+
+    this.xPos = 100;
+    this.yPos = 100;
+
+} else { // REMOVE LAST BRACE
+// !!!!!!!! DELETE FOR REAL LEVELS
 
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
+
+    if(false) {}
+    else if(this.onGround && this.onWall) {
+
+        this.xVel = 0;
+        this.yVel = 0;
+
+        if(this.facingRight) {
+
+            if(!(this.game.keyDownList['d'] && !this.game.keyDownList['a'])) { this.xPos = this.xPos - 1; }
+
+        } else {
+
+            if(!(this.game.keyDownList['a'] && !this.game.keyDownList['d'])) { this.xPos = this.xPos + 1; }
+        }
+
+        if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
+        if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
+
+        if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
+        if(this.game.keyDownList['space'] && !this.jumpREQ) {
+
+            if(this.facingRight) { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+            else { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+
+            this.jumpREQ = true;
+        }
+    }
     // Ground move set
-    if(this.onGround) {
+    else if(this.onGround) {
         if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xVel -= this.xAccel; }
         if(this.game.keyDownList['d'] && !this.game.keyDownList['a']) { this.xVel += this.xAccel; }
         if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
@@ -95,10 +131,13 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
         if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
 
-        if(this.game.keyDownList['space'] && this.jumpREQ != true)  {
+        if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
+        if(this.game.keyDownList['space'] && !this.jumpREQ) {
 
             if(this.facingRight) { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
             else { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+
+            this.jumpREQ = true;
         }
     }
 
@@ -125,7 +164,6 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
     for (const ent in this.game.entities) {
 
         entity = this.game.entities[ent];
-
         if (this.boundingBox.collide(entity.boundingBox)) {
 
             state = "n/a";
@@ -133,17 +171,15 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
             switch (entity.type) {
 
                 case "floor":
-                console.log("Touching Floor");
                          if(this.lastBox.bottom <= entity.lastBox.top)    { state = "top"; }
                     else if(this.lastBox.right  <= entity.lastBox.left)   { state = "left"; }
                     else if(this.lastBox.left   >= entity.lastBox.right)  { state = "right"; }
                     else if(this.lastBox.top    >= entity.lastBox.bottom) { state = "bottom"; }
-                    else { console.log("Error on collision side")}
+                    else { console.log("Error on collision side"); console.log(this.lastBox); console.log(entity.lastBox); }
 
                     switch(state) {
                         case "top"    :
                                 this.yPos = entity.boundingBox.top - this.boundingBox.height;
-                                this.yVel = 0;
                                 this.onGround = true;
                             break;
                         case "bottom" :
@@ -152,12 +188,10 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                             break;
                         case "left"   :
                                 this.xPos = entity.boundingBox.left - this.boundingBox.width;
-                                this.xVel = 0;
                                 this.onWall = true;
                             break;
                         case "right"  :
                                 this.xPos = entity.boundingBox.right;
-                                this.xVel = 0;
                                 this.onWall = true;
                             break;
                     }
@@ -174,16 +208,16 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         // if touching get relative velocity to determine side
     }
 
+//    if(this.onGround && !this.onWall) { this.yVel = 0; }
+//    if(this.onWall && !this.onGround) { this.xVel = 0; }
+
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
-
-console.log(["xPos = " + this.xPos, "yPos = " + this.yPos])
-console.log(["Ground = " + this.onGround, "Wall = " + this.onWall]);
 
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
 
     Entity.prototype.update.call(this);
-}
+}}
 
 KayNine.prototype.draw = function (ctx) {
 

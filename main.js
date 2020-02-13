@@ -86,34 +86,35 @@ ASSET_MANAGER.downloadAll(function () {
 
     // Floors are about 190 in length ; 187 creates a nice "repeat" look
     // Inefficient as hell and I'll ask about it
-    var f1 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 0, 500, 187, 50);
-    //var f2 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 187, 500, 187, 50);
-    var f3 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 374, 500, 187, 50);
-    var f4 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 561, 500, 187, 50);
-    var f5 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 748, 500, 187, 50);
-    var f6 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 935, 500, 187, 50);
-
-    var f7 = new Floor (gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, 187, 50);
+//    var f1 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 0, 500, 187, 50);
+//    var f2 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 187, 500, 187, 50);
+//    var f3 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 374, 500, 187, 50);
+//    var f4 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 561, 500, 187, 50);
+//    var f5 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 748, 500, 187, 50);
+//    var f6 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 935, 500, 187, 50);
+//    var f7 = new Floor(gameEngine, ASSET_MANAGER.getAsset("img/smallPlatform.png"), 465, 300, 187, 50);
 
     var s1 = new Spike(gameEngine, ASSET_MANAGER.getAsset("img/spike.png"), 120, 600, 50, 50);
 
-    var kayNine = new KayNine(gameEngine);
+    var kayNine = new KayNine(gameEngine, 100, 100);
     var tempAnimation = new TempAnimation(gameEngine);
 
     gameEngine.addEntity(bg);
 
-    gameEngine.addEntity(f1);
-    //gameEngine.addEntity(f2);
-    gameEngine.addEntity(f3);
-    gameEngine.addEntity(f4);
-    gameEngine.addEntity(f5);
-    gameEngine.addEntity(f6);
-    gameEngine.addEntity(f7);
+//    gameEngine.addEntity(f1);
+//    gameEngine.addEntity(f2);
+//    gameEngine.addEntity(f3);
+//    gameEngine.addEntity(f4);
+//    gameEngine.addEntity(f5);
+//    gameEngine.addEntity(f6);
+//    gameEngine.addEntity(f7);
 
     gameEngine.addEntity(s1);
 
     gameEngine.addEntity(kayNine);
     gameEngine.addEntity(tempAnimation);
+
+    level = loadLevel(gameEngine, 1);
 
     gameEngine.init(ctx);
     gameEngine.start();
