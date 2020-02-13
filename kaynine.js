@@ -26,7 +26,7 @@ function KayNine(game, xPos, yPos) {
 
     // Status
     this.jumpReq  = false;
-    this.onGround = true;
+    this.onGround = false;
     this.onWall   = false;
 
     this.width  = 128;
@@ -180,6 +180,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                     switch(state) {
                         case "top"    :
                                 this.yPos = entity.boundingBox.top - this.boundingBox.height;
+                                this.yVel = 0;
                                 this.onGround = true;
                             break;
                         case "bottom" :
@@ -205,23 +206,17 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                 default:
             }
         }
-        // if touching get relative velocity to determine side
     }
-
-//    if(this.onGround && !this.onWall) { this.yVel = 0; }
-//    if(this.onWall && !this.onGround) { this.xVel = 0; }
 
     if(this.xVel > 0) { this.facingRight =  true; }
     if(this.xVel < 0) { this.facingRight = false; }
 
-if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
+if(this.game.keyDownList['shift']) { console.log("End of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel) }
 
     Entity.prototype.update.call(this);
 }}
 
 KayNine.prototype.draw = function (ctx) {
-
-this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
 
     if(false) {}
 

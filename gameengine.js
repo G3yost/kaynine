@@ -229,8 +229,7 @@ GameEngine.prototype.startInput = function () {
             case 13 : that.keyDownList['enter'] = true; break;
         }
 
-        if (String.fromCharCode(e.which) === ' ') that.space = true;
-//        e.preventDefault();
+        e.preventDefault();
     }, false);
 
 this.ctx.canvas.addEventListener("keyup", function (e) {
@@ -360,5 +359,4 @@ GameEngine.prototype.loop = function () {
     this.clockTick = this.timer.tick();
     this.update();
     this.draw();
-    this.space = null;
 }

@@ -1,9 +1,8 @@
-function Entity(game, x, y, width, height, parent) {
+function Entity(game, x, y, width, height) {
     this.game = game;
 
     // Game world
     this.facingRight = true;
-    this.parent = parent;
 
     this.xPos = x;
     this.xVel = 0;
@@ -11,8 +10,8 @@ function Entity(game, x, y, width, height, parent) {
     this.yPos = y;
     this.yVel = 0;
 
-    this.boundingBox = new BoundingBox(x, y, width, height, parent);
-    this.lastBox = new BoundingBox(x, y, width, height, parent);
+    this.boundingBox = new BoundingBox(x, y, width, height);
+    this.lastBox = new BoundingBox(x, y, width, height);
 
     this.removeFromWorld = false;
 }
@@ -27,6 +26,8 @@ Entity.prototype.draw = function (ctx) {
         this.game.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         this.game.ctx.stroke();
         this.game.ctx.closePath();
+
+        // !! CHANGE TO SHOW BOUNDING BOX RATHER THAN ARC
     }
 }
 

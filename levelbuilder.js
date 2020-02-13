@@ -1,3 +1,5 @@
+// Change order of adding entities, add to array and sort by type before adding.
+
 LEVEL_LIST = [ "",
 "|||||\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n||||||||||"]
 

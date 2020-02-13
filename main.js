@@ -51,6 +51,8 @@ TempAnimation.prototype.draw = function (ctx) {
     Entity.prototype.draw.call(this);
 }
 
+// DELETE ABOVE???
+
 var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("img/background.png");
@@ -72,8 +74,8 @@ ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump_right.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump_left.png");
 
 ASSET_MANAGER.queueDownload("./img/kay_nine_idle_temp.png");    // !!! CHANGE FILE NAME IN ANIM
-ASSET_MANAGER.queueDownload("./img/kay_nine_running_temp.png"); // !!! CHANGE FILE NAME IN ANIM
-ASSET_MANAGER.queueDownload("./img/kay_nine_jumping_temp.png"); // !!! CHANGE FILE NAME IN ANIM
+ASSET_MANAGER.queueDownload("./img/kay_nine_running_temp.png"); // !!! CHANGE FILE NAME IN ANIM NEED???
+ASSET_MANAGER.queueDownload("./img/kay_nine_jumping_temp.png"); // !!! CHANGE FILE NAME IN ANIM NEED???
 
 
 
@@ -97,7 +99,7 @@ ASSET_MANAGER.downloadAll(function () {
     var s1 = new Spike(gameEngine, ASSET_MANAGER.getAsset("img/spike.png"), 120, 600, 50, 50);
 
     var kayNine = new KayNine(gameEngine, 100, 100);
-    var tempAnimation = new TempAnimation(gameEngine);
+    var tempAnimation = new TempAnimation(gameEngine); // DELETE!!!
 
     gameEngine.addEntity(bg);
 
@@ -114,7 +116,7 @@ ASSET_MANAGER.downloadAll(function () {
     gameEngine.addEntity(kayNine);
     gameEngine.addEntity(tempAnimation);
 
-    level = loadLevel(gameEngine, 1);
+    loadLevel(gameEngine, 1);
 
     gameEngine.init(ctx);
     gameEngine.start();
