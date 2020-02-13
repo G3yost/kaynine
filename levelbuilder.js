@@ -1,7 +1,7 @@
 // Change order of adding entities, add to array and sort by type before adding.
 
 LEVEL_LIST = [ "",
-"|||||\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n|   |\n||||||||||"]
+"|||||\n|   |\n|   |\n|   |\n|   |\n| g |\n|   |\n|   |\n|   |\n|   |\n|   |\n||||||||||"]
 
 function loadLevel(game, levelNumber) {
 
@@ -22,7 +22,7 @@ console.log(level.charAt(i));
             case(' '): break; // Nothing
             case('|'): game.addEntity(new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight)); break; // Wall
             case('@'): game.addEntity(new KayNine(game, x, y)); break;           // KayNine
-            case('g'): game.addEntity(new Goal(game, x, y)); break;              // Goal
+            case('g'): game.addEntity(new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y)); break;              // Goal
             case('['): game.addEntity(new Turret(game, x, y, true)); break;      // Right Facing Turret
             case(']'): game.addEntity(new Turret(game, x, y, false)); break;     // Left  Facing Turret
             case('^'): game.addEntity(new Spike(game, x, y, "up")); break;       // Upward    Facing Spike
