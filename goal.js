@@ -16,6 +16,6 @@ Goal.prototype.update = function () {
 
 Goal.prototype.draw = function (ctx) {
 this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
-    ctx.drawImage(this.spritesheet, this.xPos, this.yPos, 0.2);
+    ctx.drawImage(this.spritesheet, this.xPos, this.yPos);
     Entity.prototype.draw.call(this);
 }
