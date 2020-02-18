@@ -250,12 +250,12 @@ console.log(this.yVel);
     else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
     // Wall Climbing
-    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("Wall Climb Right");}
-    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("WallClimbg Left");}
+    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
     // Wall Hanging
-    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("Wall Hang Right");}
-    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("Wall Hang Left");}
+    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
     // Jumping
     else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }

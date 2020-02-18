@@ -2,7 +2,12 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("img/background.png");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
-ASSET_MANAGER.queueDownload("img/spike.png");
+
+ASSET_MANAGER.queueDownload("img/spike_up.png");
+ASSET_MANAGER.queueDownload("img/spike_left.png");
+ASSET_MANAGER.queueDownload("img/spike_right.png");
+ASSET_MANAGER.queueDownload("img/spike_down.png");
+
 ASSET_MANAGER.queueDownload("img/flag.png");
 
 // Files

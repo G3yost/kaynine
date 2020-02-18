@@ -23,10 +23,10 @@ function loadLevel(game, levelNumber) {
             case('g'): game.addEntity(new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y)); break;              // Goal
             case('['): game.addEntity(new Turret(game, x, y, true)); break;      // Right Facing Turret
             case(']'): game.addEntity(new Turret(game, x, y, false)); break;     // Left  Facing Turret
-            case('^'): game.addEntity(new Spike(game, x, y, "up")); break;       // Upward    Facing Spike
-            case('v'): game.addEntity(new Spike(game, x, y, "down")); break;     // Downward  Facing Spike
-            case('<'): game.addEntity(new Spike(game, x, y, "left")); break;     // Leftward  Facing Spike
-            case('>'): game.addEntity(new Spike(game, x, y, "right")); break;    // Rightward Facing Spike
+            case('^'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65)); break;       // Upward    Facing Spike
+            case('v'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_down.png"), x, y, 65, 65)); break;     // Downward  Facing Spike
+            case('<'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x, y, 65, 65)); break;     // Leftward  Facing Spike
+            case('>'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65)); break;    // Rightward Facing Spike
             case('\n'): y = y + blockHeight; x = -blockwidth; break; // Next line
 
             default: console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
