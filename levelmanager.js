@@ -44,11 +44,26 @@ function beginGame(game) {
 
     clearLevel(game);
 
-    while(!level1(game));
-    while(!level2(game));
-    while(!level3(game));
-    while(!level4(game));
-    while(!level5(game));
+    while(!level1(game)) { clearLevel(game); }
+
+    clearLevel(game);
+
+    while(!level2(game)) { clearLevel(game); }
+
+    clearLevel(game);
+
+    while(!level3(game)) { clearLevel(game); }
+
+    clearLevel(game);
+
+    while(!level4(game)) { clearLevel(game); }
+
+    clearLevel(game);
+
+    while(!level5(game)) { clearLevel(game); }
+
+    clearLevel(game);
+
 }
 
 function level1(game) {
