@@ -44,7 +44,11 @@ function beginGame(game) {
 
     clearLevel(game);
 
-    level1(game);
+    while(!level1(game));
+    while(!level2(game));
+    while(!level3(game));
+    while(!level4(game));
+    while(!level5(game));
 }
 
 function level1(game) {
@@ -53,9 +57,7 @@ function level1(game) {
 
     loadLevel(game, 1);
 
-    game.start();
-
-console.log("!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n!!!\n");
+    return game.start();
 }
 
 function clearLevel(game) {
