@@ -219,6 +219,10 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                         console.log("Victory");
                 break;
 
+                case "spike":
+                        console.log("Death");
+                break;
+
                 default:
             }
         }

@@ -3,7 +3,7 @@
 
 
 LEVEL_LIST = [ "",
-"|||||\n| v |\n|   |\n|   |\n|   |\n| g |\n|   |\n|   |\n|   |\n|   |\n|@  |\n||||||||||"]
+"|||||\n|  v|\n|   |\n|   |\n|   |\n|>g<|\n|   |\n|   |\n|   |\n| @ |\n|^  |\n||||||||||"]
 
 function loadLevel(game, levelNumber) {
 
@@ -25,7 +25,7 @@ function loadLevel(game, levelNumber) {
             case(']'): game.addEntity(new Turret(game, x, y, false)); break;     // Left  Facing Turret
             case('^'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65)); break;       // Upward    Facing Spike
             case('v'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_down.png"), x, y, 65, 65)); break;     // Downward  Facing Spike
-            case('<'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x, y, 65, 65)); break;     // Leftward  Facing Spike
+            case('<'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x + blockwidth - 65, y, 65, 65)); break;     // Leftward  Facing Spike
             case('>'): game.addEntity(new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65)); break;    // Rightward Facing Spike
             case('\n'): y = y + blockHeight; x = -blockwidth; break; // Next line
 
