@@ -41,6 +41,8 @@ function GameEngine() {
     this.airFriction = 0.1;
 
     this.gravity = 0.5;
+
+    this.isRunning = false
 }
 
 GameEngine.prototype.init = function (ctx) {
@@ -55,9 +57,13 @@ GameEngine.prototype.init = function (ctx) {
 GameEngine.prototype.start = function () {
     console.log("starting game");
     var that = this;
+
+    this.isRunning = true;
+
     (function gameLoop() {
         that.loop();
         requestAnimFrame(gameLoop, that.ctx.canvas);
+        if(!this.isRunning) { return; }
     })();
 }
 

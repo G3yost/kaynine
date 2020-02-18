@@ -70,7 +70,20 @@ if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
 
-    if(this.isDead) { this.xVel = 0, this.yVel = 0; this.xAccel = 0; this.yAccel = 0; }
+    if(this.isDead) {
+
+        this.xVel = 0;
+        this.yVel = 0;
+        this.xAccel = 0;
+        this.yAccel = 0;
+
+        if(this.xMax > 100) {
+            this.game.isRunning = false;
+        } else {
+            this.xMax = this.xMax + 1;
+        }
+    }
+    // Wall/Ground move set
     else if(this.onGround && this.onWall) {
 
         this.xVel = 0;
@@ -155,7 +168,8 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
     this.xPre  = this.xVel;
     this.xPos += this.xVel;
     this.yPos -= this.yVel;
-// Complex Collision with all entities.
+
+    // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
     this.onGround = false;
@@ -203,7 +217,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
                 case "goal":
                         console.log("Victory");
-                break; 
+                break;
 
                 default:
             }
@@ -222,20 +236,28 @@ if(this.game.keyDownList['shift']) { console.log("End of update: jumpReq = " + t
 
 KayNine.prototype.draw = function (ctx) {
 
+console.log(this.yVel);
+
+    // Dead
     if(this.isDead) { this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
+    // Walking
     else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
     else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
+    // Idle
     else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
     else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-/*
-    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
-    else if (this.onWall && this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-*/
+    // Wall Climbing
+    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("Wall Climb Right");}
+    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("WallClimbg Left");}
+
+    // Wall Hanging
+    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("Wall Hang Right");}
+    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); console.log("Wall Hang Left");}
+
+    // Jumping
     else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
     else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
 
