@@ -1,24 +1,24 @@
-function Vaccuum(game, spritesheet, xPosition, yPosition, width, height){
+function Vacuum(game, spritesheet, xPosition, yPosition, width, height){
     Entity.call(this, game, xPosition, yPosition, width, height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
 
-    // collision behavior can mimic that of a vaccuum
-    // the vaccuum moves along a platform like an enemy
-    this.type = "vaccuum";
+    // collision behavior can mimic that of a vacuum
+    // the vacuum moves along a platform like an enemy
+    this.type = "Vacuum";
 }
 
-Lazer.prototype = new Entity();
-Lazer.prototype.constructor = Floor;
+Vacuum.prototype = new Entity();
+Vacuum.prototype.constructor = Floor;
 
-Lazer.prototype.update = function () {
+Vacuum.prototype.update = function () {
 
     
 
 }
 
 
-Lazer.prototype.draw = function (ctx) {
+Vacuum.prototype.draw = function (ctx) {
     ctx.drawImage(this.spritesheet,
                     this.xPos, this.yPos);
     Entity.prototype.draw.call(this);
