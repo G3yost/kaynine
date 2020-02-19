@@ -54,7 +54,7 @@ GameEngine.prototype.init = function (ctx) {
     console.log('game initialized');
 }
 
-GameEngine.prototype.start = function () {
+GameEngine.prototype.start = function (callback, level) {
     console.log("starting game");
     var that = this;
 
@@ -63,8 +63,9 @@ GameEngine.prototype.start = function () {
     (function gameLoop() {
         that.loop();
         requestAnimFrame(gameLoop, that.ctx.canvas);
-        if(!this.isRunning) { return; }
     })();
+
+    callback();
 }
 
 GameEngine.prototype.startInput = function () {

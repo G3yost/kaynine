@@ -217,10 +217,12 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
                 case "goal":
                         console.log("Victory");
+                        this.game.isRunning = "victory";
                 break;
 
                 case "spike":
                         console.log("Death");
+                        this.game.isRunning = "death";
                 break;
 
                 default:
@@ -239,8 +241,6 @@ if(this.game.keyDownList['shift']) { console.log("End of update: jumpReq = " + t
 }}
 
 KayNine.prototype.draw = function (ctx) {
-
-console.log(this.yVel);
 
     // Dead
     if(this.isDead) { this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }

@@ -36,5 +36,5 @@ ASSET_MANAGER.downloadAll(function () {
 
     gameEngine.init(ctx);
 
-    beginGame(gameEngine, 1);
+    level1(gameEngine);
 });

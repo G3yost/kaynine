@@ -3,7 +3,8 @@
 
 
 LEVEL_LIST = [ "",
-"|||||\n|  v|\n|   |\n|   |\n|   |\n|>g<|\n|   |\n|   |\n|   |\n| @ |\n|^  |\n||||||||||"]
+"|||||\n|  v|\n|   |\n|   |\n|   |\n|>g<|\n|   |\n|   |\n|   |\n| @ |\n|^  |\n||||||||||",
+"|||||\n|v  |\n|   |\n|   |\n|   |\n| g |\n|   |\n|> <|\n|   |\n| @ |\n|  ^|\n||||||||||"]
 
 function loadLevel(game, levelNumber) {
 
@@ -37,33 +38,19 @@ function loadLevel(game, levelNumber) {
     return entityList;
 }
 
-function beginGame(game) {
+function beginGame(game, level) {
 
     game.ctx.font = "30px Arial";
     game.ctx.fillText("Display", 100, 100);
 
     clearLevel(game);
 
-    while(!level1(game)) { clearLevel(game); }
+    switch(level) {
+        case 1: if(state === "victory") { level2(game); } else { level1(game); } break;
+        case 2: if(state === "victory") { level3(game); } else { level2(game); } break;
 
-    clearLevel(game);
-
-    while(!level2(game)) { clearLevel(game); }
-
-    clearLevel(game);
-
-    while(!level3(game)) { clearLevel(game); }
-
-    clearLevel(game);
-
-    while(!level4(game)) { clearLevel(game); }
-
-    clearLevel(game);
-
-    while(!level5(game)) { clearLevel(game); }
-
-    clearLevel(game);
-
+        default: console.log("You beat the game!!!");
+    }
 }
 
 function level1(game) {
@@ -72,7 +59,16 @@ function level1(game) {
 
     loadLevel(game, 1);
 
-    return game.start();
+    game.start(beginGame, 1);
+}
+
+function level2(game) {
+
+    var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"));
+
+    loadLevel(game, 2);
+
+    return game.start(beginGame, 2);
 }
 
 function clearLevel(game) {
