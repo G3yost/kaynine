@@ -1,12 +1,12 @@
 // This game shell was happily copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
 
-window.requestAnimFrame = (function () {
+window.requestAnimFrame =(function() {
     return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame ||
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
-            function (/* function */ callback, /* DOMElement */ element) {
+            function(/* function */ callback, /* DOMElement */ element) {
                 window.setTimeout(callback, 1000 / 60);
             };
 })();
@@ -18,9 +18,9 @@ function Timer() {
     this.wallLastTimestamp = 0;
 }
 
-Timer.prototype.tick = function () {
+Timer.prototype.tick = function() {
     var wallCurrent = Date.now();
-    var wallDelta = (wallCurrent - this.wallLastTimestamp) / 1000;
+    var wallDelta =(wallCurrent - this.wallLastTimestamp) / 1000;
     this.wallLastTimestamp = wallCurrent;
 
     var gameDelta = Math.min(wallDelta, this.maxStep);
@@ -45,7 +45,7 @@ function GameEngine() {
     this.isRunning = false
 }
 
-GameEngine.prototype.init = function (ctx) {
+GameEngine.prototype.init = function(ctx) {
     this.ctx = ctx;
     this.surfaceWidth = this.ctx.canvas.width;
     this.surfaceHeight = this.ctx.canvas.height;
@@ -54,13 +54,13 @@ GameEngine.prototype.init = function (ctx) {
     console.log('game initialized');
 }
 
-GameEngine.prototype.start = function (callback, level) {
+GameEngine.prototype.start = function(callback, level) {
     console.log("starting game");
     var that = this;
 
     this.isRunning = true;
 
-    (function gameLoop() {
+   (function gameLoop() {
         that.loop();
         requestAnimFrame(gameLoop, that.ctx.canvas);
     })();
@@ -68,7 +68,7 @@ GameEngine.prototype.start = function (callback, level) {
     callback();
 }
 
-GameEngine.prototype.startInput = function () {
+GameEngine.prototype.startInput = function() {
     console.log('starting input');
     var that = this;
 
@@ -151,7 +151,7 @@ GameEngine.prototype.startInput = function () {
     that.keyDownList['backspace'] = false;
     that.keyDownList['enter'] = false;
 
-    this.ctx.canvas.addEventListener("keydown", function (e) {
+    this.ctx.canvas.addEventListener("keydown", function(e) {
 
         switch(e.which || e.keyCode || 0) {
 
@@ -239,7 +239,7 @@ GameEngine.prototype.startInput = function () {
         e.preventDefault();
     }, false);
 
-this.ctx.canvas.addEventListener("keyup", function (e) {
+this.ctx.canvas.addEventListener("keyup", function(e) {
 
         switch(e.which || e.keyCode || 0) {
 
@@ -330,39 +330,51 @@ this.ctx.canvas.addEventListener("keyup", function (e) {
     console.log('input started');
 }
 
-GameEngine.prototype.addEntity = function (entity) {
+GameEngine.prototype.addEntity = function(entity) {
     console.log('added entity');
     this.entities.push(entity);
 }
 
-GameEngine.prototype.draw = function () {
+GameEngine.prototype.draw = function() {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.save();
-    for (var i = 0; i < this.entities.length; i++) {
+    for(var i = 0; i < this.entities.length; i++) {
         this.entities[i].draw(this.ctx);
     }
     this.ctx.restore();
 }
 
-GameEngine.prototype.update = function () {
+GameEngine.prototype.update = function() {
     var entitiesCount = this.entities.length;
 
-    for (var i = 0; i < entitiesCount; i++) {
+    for(var i = 0; i < entitiesCount; i++) {
         var entity = this.entities[i];
 
-        if (!entity.removeFromWorld) {
+        if(!entity.removeFromWorld) {
             entity.update();
         }
     }
 
-    for (var i = this.entities.length - 1; i >= 0; --i) {
-        if (this.entities[i].removeFromWorld) {
+    for(var i = this.entities.length - 1; i >= 0; --i) {
+        if(this.entities[i].removeFromWorld) {
             this.entities.splice(i, 1);
         }
     }
 }
 
-GameEngine.prototype.loop = function () {
+GameEngine.prototype.updateCam = function() {
+
+    var entitiesCount = this.entities.length;
+
+    for(var i = 0; i < entitiesCount; i++) {
+
+        var entity = this.entities[i];
+
+        if(entity.type != "camera") { entity.updateCam(); }
+    }
+}
+
+GameEngine.prototype.loop = function() {
     this.clockTick = this.timer.tick();
     this.update();
     this.draw();

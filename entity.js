@@ -10,28 +10,30 @@ function Entity(game, x, y, width, height) {
     this.yPos = y;
     this.yVel = 0;
 
+    this.xCam = 0;
+    this.yCam = 0;
+
     this.boundingBox = new BoundingBox(x, y, width, height);
     this.lastBox = new BoundingBox(x, y, width, height);
 
     this.removeFromWorld = false;
 }
 
-Entity.prototype.update = function () {
+Entity.prototype.update = function() {
 }
 
-Entity.prototype.draw = function (ctx) {
-    if (this.game.showOutlines && this.radius) {
-        this.game.ctx.beginPath();
-        this.game.ctx.strokeStyle = "green";
-        this.game.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        this.game.ctx.stroke();
-        this.game.ctx.closePath();
+Entity.prototype.updateCam = function(camera) {
+
+    this.xCam = this.xPos - camera.xPos;
+    this.yCam = this.yPos - camera.yPos;
+}
+
+Entity.prototype.draw = function(ctx) {
 
         // !! CHANGE TO SHOW BOUNDING BOX RATHER THAN ARC
-    }
 }
 
-Entity.prototype.rotateAndCache = function (image, angle) {
+Entity.prototype.rotateAndCache = function(image, angle) {
     var offscreenCanvas = document.createElement('canvas');
     var size = Math.max(image.width, image.height);
     offscreenCanvas.width = size;

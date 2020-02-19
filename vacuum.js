@@ -13,13 +13,13 @@ Vacuum.prototype.constructor = Floor;
 
 Vacuum.prototype.update = function () {
 
-    
+
 
 }
 
 
 Vacuum.prototype.draw = function (ctx) {
     ctx.drawImage(this.spritesheet,
-                    this.xPos, this.yPos);
+                    this.xCam, this.yCam);
     Entity.prototype.draw.call(this);
 }

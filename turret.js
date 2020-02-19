@@ -17,7 +17,7 @@ Turret.prototype.update = function () {
 }
 
 Turret.prototype.draw = function (ctx) {
-this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
-    ctx.drawImage(this.spritesheet, this.xPos, this.yPos);
+
+    ctx.drawImage(this.spritesheet, this.xCam, this.yCam);
     Entity.prototype.draw.call(this);
 }

@@ -243,27 +243,27 @@ if(this.game.keyDownList['shift']) { console.log("End of update: jumpReq = " + t
 KayNine.prototype.draw = function (ctx) {
 
     // Dead
-    if(this.isDead) { this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    if(this.isDead) { this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
 
     // Walking
-    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
+    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
 
     // Idle
-    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
+    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
 
     // Wall Climbing
-    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
+    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
 
     // Wall Hanging
-    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
+    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
 
     // Jumping
-    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
-    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos); }
+    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
+    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam); }
 
     Entity.prototype.draw.call(this);
 }
