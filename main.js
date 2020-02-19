@@ -2,6 +2,8 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("img/background.png");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
+ASSET_MANAGER.queueDownload("img/smallWall.png");
+ASSET_MANAGER.queueDownload("img/coin.png");
 
 ASSET_MANAGER.queueDownload("img/spike_up.png");
 ASSET_MANAGER.queueDownload("img/spike_left.png");
