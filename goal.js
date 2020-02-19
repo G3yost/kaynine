@@ -14,12 +14,12 @@ Goal.prototype = new Entity();
 Goal.prototype.constructor = Goal;
 
 Goal.prototype.update = function () {
-    
+
 }
 
 Goal.prototype.draw = function (ctx) {
-this.game.ctx.fillRect(this.boundingBox.left, this.boundingBox.top, this.boundingBox.width, this.boundingBox.height);
-    //this.goalAnim.drawFrame(this.spritesheet, this.xPos, this.yPos, 0.2);
-    this.goalAnim.drawFrame(this.game.clockTick, ctx, this.xPos, this.yPos, 0.35 );
+
+    //this.goalAnim.drawFrame(this.spritesheet, this.xCam, this.yCam, 0.2);
+    this.goalAnim.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam, 0.35 );
     Entity.prototype.draw.call(this);
 }
