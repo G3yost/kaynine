@@ -201,7 +201,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                                 } else { this.onGround = null; }
                             break;
                         case "bottom" :
-                                this.yPos = entity.boundingBox.bottom;
+                                this.yPos = entity.boundingBox.bottom + 1;
                                 this.yVel = 0;
                             break;
                         case "left"   :

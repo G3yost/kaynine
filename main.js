@@ -38,10 +38,9 @@ ASSET_MANAGER.downloadAll(function () {
     var k9 = new KayNine(gameEngine, -200, -200);
     var lvlMng = new LevelManager(gameEngine, k9, 1);
 
-    gameEngine.addEntity(lvlMng);
-
-    
     gameEngine.init(ctx);
+
+    gameEngine.addEntity(lvlMng);
 
     //gameEngine.lvlMng.loadLevel(gameEngine, 1);
 
