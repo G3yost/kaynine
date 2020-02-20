@@ -175,8 +175,10 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
     // Complex Collision with all entities.
     this.boundingBox.update(this.xPos, this.yPos);
 
-    this.onGround = false;
+    this.onGround = null;
     this.onWall = false;
+
+    groundCount = 0;
 
     for (const ent in this.game.entities) {
 
@@ -184,7 +186,6 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         if (this.boundingBox.collide(entity.boundingBox)) {
 
             state = "n/a";
-
             switch (entity.type) {
 
                 case "floor":
@@ -196,21 +197,45 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
                     switch(state) {
                         case "top"    :
+                                if(this.onWall) {
+
+                                    groundCount++;
+console.log(groundCount);
+                                    if(groundCount > 1) { this.onGround = true; }
+
+                                } else { this.onGround = true; }
+
+                                if(this.onGround) {
+                                   this.yPos = entity.boundingBox.top - this.boundingBox.height;
+                                    this.yVel = 0;
+                                    this.onGround = true;
+                                }
+console.log(this.onGround);
+/*
                                 if(!this.onWall || this.onGround === null) {
                                     this.yPos = entity.boundingBox.top - this.boundingBox.height;
                                     this.yVel = 0;
                                     this.onGround = true;
-                                } else { this.onGround = null; }
+                                } else if(!this.onWall || this.onGround === 0) {
+
+                                    this.onGround = null
+
+                                } else {
+
+                                    this.onGround = 0;
+                                }*/
                             break;
                         case "bottom" :
                                 this.yPos = entity.boundingBox.bottom + 1;
                                 this.yVel = 0;
                             break;
                         case "left"   :
+console.log("wall");
                                 this.xPos = entity.boundingBox.left - this.boundingBox.width;
                                 this.onWall = true;
                             break;
                         case "right"  :
+console.log("wall");
                                 this.xPos = entity.boundingBox.right;
                                 this.onWall = true;
                             break;
