@@ -1,4 +1,4 @@
-function Lazer(game, spritesheet, xPosition, yPosition, width, height){
+function Lazer(game, spritesheet, xPosition, yPosition, width, height, camera){
     Entity.call(this, game, xPosition, yPosition, width, height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
@@ -20,6 +20,6 @@ Lazer.prototype.update = function () {
 
 Lazer.prototype.draw = function (ctx) {
     ctx.drawImage(this.spritesheet,
-                    this.xCam, this.yCam);
+                    this.xPosition + this.camera.xPosition, this.yPosition + this.camera.yPosition);
     Entity.prototype.draw.call(this);
 }

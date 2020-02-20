@@ -1,6 +1,6 @@
 // Change order of adding entities, add to array and sort by type before adding.
 
-/* 
+/*
 He made this hold its own entity list and then performed load and delete functions
 */
 function LevelManager(game, Kay9, lvl){
@@ -18,7 +18,7 @@ function LevelManager(game, Kay9, lvl){
     this.entityList = [];
 
     //beginGame(game, this.level);
-    
+
 }
 
 LevelManager.prototype = new Entity();
@@ -41,6 +41,7 @@ function loadLevel(game, levelNumber) {
     var level = this.LEVEL_LIST[levelNumber];
     this.entityList = [];
 
+    var camera = new Camera();
 
     x = 0;
     y = 0;
@@ -53,43 +54,44 @@ function loadLevel(game, levelNumber) {
         switch(level.charAt(i)) {
             case(' '): break; // Nothing
 
-            case('|'): 
-                var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight); 
+            case('|'):
+                var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight, camera);
                 game.addEntity(f);
                 this.entityList[i] = f;    break; // Wall
-            
-            case('@'): 
-                var kayNine = new KayNine(game, x, y);
-                this.K9 = kayNine;  
+
+            case('@'):
+                var kayNine = new KayNine(game, x, y, camera);
+                this.K9 = kayNine;
                 game.addEntity(kayNine);
+                camera.attachKaynine(kayNine);
                 this.entityList[i] = kayNine; break;           // KayNine
-            
-            case('g'): 
-                var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y);
+
+            case('g'):
+                var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y, camera);
                 game.addEntity(g);
                 this.entityList[i] = g; break;              // Goal
 
-            case('['): game.addEntity(new Turret(game, x, y, true)); break;      // Right Facing Turret
-            case(']'): game.addEntity(new Turret(game, x, y, false)); break;     // Left  Facing Turret 
+            case('['): game.addEntity(new Turret(game, x, y, true, camera)); break;      // Right Facing Turret
+            case(']'): game.addEntity(new Turret(game, x, y, false, camera)); break;     // Left  Facing Turret
             // not used at the moment ; will get to later
-            
-            case('^'): 
-                var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65);
+
+            case('^'):
+                var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
                 game.addEntity(sUp);
                 this.entityList[i] = sUp; break;       // Upward    Facing Spike
 
-            case('v'): 
-                var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65);
-                game.addEntity(sDown);   
+            case('v'):
+                var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
+                game.addEntity(sDown);
                 this.entityList[i] = sDown; break;       // Upward    Facing Spike  // Downward  Facing Spike
-            
-            case('<'): 
-                var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x + blockwidth - 65, y, 65, 65); 
+
+            case('<'):
+                var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x + blockwidth - 65, y, 65, 65, camera);
                 game.addEntity(sLeft);
                 this.entityList[i] = sLeft; break;     // Leftward  Facing Spike
 
-            case('>'): 
-                var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65); 
+            case('>'):
+                var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, camera);
                 game.addEntity(sRight);
                 this.entityList[i] = sRight; break;    // Rightward Facing Spike
 
@@ -99,6 +101,7 @@ function loadLevel(game, levelNumber) {
         }
         x = x + blockwidth;
     }
+    game.addEntity(camera);
 
     return entityList;
 }
@@ -116,7 +119,7 @@ function beginGame(game, level) {
 
     //     default: console.log("You beat the game!!!");
     // }
-    
+
     loadLevel(this, level);
 
 }

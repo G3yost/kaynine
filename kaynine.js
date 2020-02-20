@@ -59,7 +59,6 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
-
 // !!!!!!!! DELETE FOR REAL LEVELS
 if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
 

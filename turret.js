@@ -18,6 +18,6 @@ Turret.prototype.update = function () {
 
 Turret.prototype.draw = function (ctx) {
 
-    ctx.drawImage(this.spritesheet, this.xCam, this.yCam);
+    ctx.drawImage(this.spritesheet, this.xPosition + this.camera.xPosition, this.yPosition + this.camera.yPosition);
     Entity.prototype.draw.call(this);
 }

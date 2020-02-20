@@ -18,6 +18,6 @@ Spike.prototype.update = function () {
 
 Spike.prototype.draw = function (ctx) {
     ctx.drawImage(this.spritesheet,
-                    this.xCam, this.yCam);
+                    this.xPosition + this.camera.xPosition, this.yPosition + this.camera.yPosition);
     Entity.prototype.draw.call(this);
 }
