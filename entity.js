@@ -10,9 +10,6 @@ function Entity(game, x, y, width, height) {
     this.yPos = y;
     this.yVel = 0;
 
-    this.xCam = 0;
-    this.yCam = 0;
-
     this.boundingBox = new BoundingBox(x, y, width, height);
     this.lastBox = new BoundingBox(x, y, width, height);
 
@@ -20,12 +17,6 @@ function Entity(game, x, y, width, height) {
 }
 
 Entity.prototype.update = function() {
-}
-
-Entity.prototype.updateCam = function(camera) {
-
-    this.xCam = this.xPos - camera.xPos;
-    this.yCam = this.yPos - camera.yPos;
 }
 
 Entity.prototype.draw = function(ctx) {
