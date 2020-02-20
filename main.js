@@ -2,7 +2,6 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("img/background.png");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
-ASSET_MANAGER.queueDownload("img/smallWall.png");
 ASSET_MANAGER.queueDownload("img/coin.png");
 
 ASSET_MANAGER.queueDownload("img/spike_up.png");
@@ -36,7 +35,19 @@ ASSET_MANAGER.downloadAll(function () {
 
     var gameEngine = new GameEngine();
 
+    var k9 = new KayNine(gameEngine, -200, -200);
+    var lvlMng = new LevelManager(gameEngine, k9, 1);
+
+    gameEngine.addEntity(lvlMng);
+
+    
     gameEngine.init(ctx);
 
-    level1(gameEngine);
+    //gameEngine.lvlMng.loadLevel(gameEngine, 1);
+
+    //level1(gameEngine);
+
+    loadLevel(gameEngine, 1);
+
+    gameEngine.start();
 });

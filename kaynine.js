@@ -217,12 +217,14 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
                 case "goal":
                         console.log("Victory");
-                        this.game.isRunning = "victory";
+                        //this.game.isRunning = "victory";
+                        this.isDead = "Victory";
                 break;
 
                 case "spike":
                         console.log("Death");
-                        this.game.isRunning = "death";
+                        //this.game.isRunning = "death";
+                        this.isDead = "Dead";
                 break;
 
                 default:
