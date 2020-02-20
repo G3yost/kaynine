@@ -44,7 +44,7 @@ function loadLevel(game, levelNumber) {
 
     x = 0;
     y = 0;
-    blockwidth  = 187;
+    blockwidth  = 187; // this blockwidth's time is limited 
     // blockwidth = 65; eventually we'll use this ; for testing load and such i'll keep this commented out
     blockHeight = 65;
 
