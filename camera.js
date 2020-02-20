@@ -1,4 +1,4 @@
-function Camera (game, kaynine) {
+function Camera (game) {
 
 	//	constructor
 	this.type = "camera";
@@ -6,22 +6,24 @@ function Camera (game, kaynine) {
 	this.height = 800;
 	this.horBuff = 200;
 	this.vertBuff = 100;
-	this.kaynine = kaynine;	//	adds KayNine to object
 	this.boundingbox = new boundingbox(this.x + this.horBuff, this.y + this.vertBuff, 400, 400);	// creates camera bounding box that KayNine interacts with
 	game.updateCam(this);
-	
+
 	//	Makes Camera object an entity
 	Entity.call(this, game, CamX, CamY, this.width, this.height, this);
 }
 
 
-	
+
 	Camera.prototype = new Entity();
 	Camera.prototype.constructor = Camera;
-	
-	
+	Camera.prototype.attachKaynine = function(kaynine) {
+
+		this.kaynine = kaynine;
+	}
+
 	Camera.prototype.update = function ()	{
-		
+
 		this.boundingbox.update(this.xPos + this.horBuff, this.y + this.verBuff);
 
 		if(this.boundingbox.collide(this.kaynine.boundingbox)) {
@@ -30,18 +32,17 @@ function Camera (game, kaynine) {
 			if(kaynine.yPos < camera.boundingbox.top) this.updatePos(camX, kaynine.yPos + kaynine.height);
 			if(kaynine.yPos > camera.boundingbox.bottom) this.updatePos(camX, kaynine.yPos);
 		}
-	
-	
+
+
 	}
-	
+
 	function updatePos (x, y)	{
 		this.xPos = x;
 		this.yPos = y;
 		camera.boundingbox.update(x + this.horBuff, y + this.vertBuff);
 		game.updateCam(this);
-	
+
 
 	}
-		
-	
-	
+
+

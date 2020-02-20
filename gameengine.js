@@ -56,6 +56,7 @@ GameEngine.prototype.init = function(ctx) {
 
 GameEngine.prototype.start = function(/*callback,*/ level) {
     console.log("starting game");
+
     var that = this;
 
     this.isRunning = true;
