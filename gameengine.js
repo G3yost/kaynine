@@ -363,18 +363,6 @@ GameEngine.prototype.update = function() {
     }
 }
 
-GameEngine.prototype.updateCam = function() {
-
-    var entitiesCount = this.entities.length;
-
-    for(var i = 0; i < entitiesCount; i++) {
-
-        var entity = this.entities[i];
-
-        if(entity.type != "camera") { entity.updateCam(); }
-    }
-}
-
 GameEngine.prototype.loop = function() {
     this.clockTick = this.timer.tick();
     this.update();

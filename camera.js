@@ -6,43 +6,38 @@ function Camera (game) {
 	this.height = 800;
 	this.horBuff = 200;
 	this.vertBuff = 100;
-	this.boundingbox = new boundingbox(this.x + this.horBuff, this.y + this.vertBuff, 400, 400);	// creates camera bounding box that KayNine interacts with
-	game.updateCam(this);
+	this.kaynine = null;
+	this.boundingBox = new BoundingBox(this.x + this.horBuff, this.y + this.vertBuff, 400, 400);	// creates camera bounding box that KayNine interacts with
 
 	//	Makes Camera object an entity
-	Entity.call(this, game, CamX, CamY, this.width, this.height, this);
+	Entity.call(this, game, 0, 0, this.width, this.height, this);
 }
 
 
 
-	Camera.prototype = new Entity();
-	Camera.prototype.constructor = Camera;
-	Camera.prototype.attachKaynine = function(kaynine) {
+Camera.prototype = new Entity();
+Camera.prototype.constructor = Camera;
+Camera.prototype.attachKaynine = function(kaynine) {
 
-		this.kaynine = kaynine;
-	}
+	this.kaynine = kaynine;
+}
 
-	Camera.prototype.update = function ()	{
+Camera.prototype.update = function ()	{
+console.log(this.kaynine);
+	this.boundingBox.update(this.xPos + this.horBuff, this.y + this.verBuff);
 
-		this.boundingbox.update(this.xPos + this.horBuff, this.y + this.verBuff);
-
-		if(this.boundingbox.collide(this.kaynine.boundingbox)) {
-			if(kaynine.xPos < camera.boundingbox.left) this.updatePos(kaynine.xPos,  camY);
-			if(kaynine.xPos > camera.boundingbox.right) this.updatePos(kaynine.xPos + kaynine.width,  camY);
-			if(kaynine.yPos < camera.boundingbox.top) this.updatePos(camX, kaynine.yPos + kaynine.height);
-			if(kaynine.yPos > camera.boundingbox.bottom) this.updatePos(camX, kaynine.yPos);
-		}
-
-
-	}
-
-	function updatePos (x, y)	{
-		this.xPos = x;
-		this.yPos = y;
-		camera.boundingbox.update(x + this.horBuff, y + this.vertBuff);
-		game.updateCam(this);
-
-
+	if(this.boundingBox.collide(this.kaynine.boundingBox)) {
+		if(kaynine.xPos < camera.boundingBox.left) this.updatePos(kaynine.xPos,  camY);
+		if(kaynine.xPos > camera.boundingBox.right) this.updatePos(kaynine.xPos + kaynine.width,  camY);
+		if(kaynine.yPos < camera.boundingBox.top) this.updatePos(camX, kaynine.yPos + kaynine.height);
+		if(kaynine.yPos > camera.boundingBox.bottom) this.updatePos(camX, kaynine.yPos);
 	}
 
 
+}
+
+function updatePos (x, y)	{
+	this.xPos = x;
+	this.yPos = y;
+	camera.boundingBox.update(x + this.horBuff, y + this.vertBuff);
+}

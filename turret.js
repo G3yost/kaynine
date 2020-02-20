@@ -1,8 +1,9 @@
-function Turret(game, spritesheet, xPosition, yPosition, width, height, speed){
+function Turret(game, spritesheet, xPosition, yPosition, width, height, speed, camera){
     //this.moving = move;
     Entity.call(this, game, xPosition, yPosition, width, height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
+    this.camera;
 
     this.type = "floor";
 }
@@ -18,6 +19,6 @@ Turret.prototype.update = function () {
 
 Turret.prototype.draw = function (ctx) {
 
-    ctx.drawImage(this.spritesheet, this.xPosition + this.camera.xPosition, this.yPosition + this.camera.yPosition);
+    ctx.drawImage(this.spritesheet, this.xPos + this.camera.xPos, this.yPos + this.camera.yPos);
     Entity.prototype.draw.call(this);
 }
