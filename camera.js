@@ -23,7 +23,7 @@ Camera.prototype.attachKaynine = function(kaynine) {
 }
 
 Camera.prototype.update = function ()	{
-console.log(this.kaynine);
+//console.log(this.kaynine);
 	this.boundingBox.update(this.xPos + this.horBuff, this.y + this.verBuff);
 
 	if(this.boundingBox.collide(this.kaynine.boundingBox)) {
