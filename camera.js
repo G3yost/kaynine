@@ -24,14 +24,13 @@ Camera.prototype.attachKaynine = function(kaynine) {
 
 Camera.prototype.update = function ()	{
 
-	//this.boundingBox.update(this.xPos + this.horBuff, this.y + this.verBuff);
-
 	if(!this.boundingBox.collide(this.kaynine.boundingBox)) {
 console.log("Not touching");
 		if(this.kaynine.xPos < this.boundingBox.left) this.updatePos(this.kaynine.boundingBox.right - this.horBuff, this.yPos);
 		if(this.kaynine.xPos > this.boundingBox.right) this.updatePos(this.kaynine.boundingBox.left - (this.horBuff + this.boundingBox.width), this.yPos);
 		if(this.kaynine.yPos < this.boundingBox.top) this.updatePos(this.xPos, this.kaynine.yPos + this.kaynine.height);
 		if(this.kaynine.yPos > this.boundingBox.bottom) this.updatePos(this.xPos, this.kaynine.yPos);
+
 	}
 }
 

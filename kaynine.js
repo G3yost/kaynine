@@ -59,6 +59,8 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
+    console.log(this.isDead);
+
 // !!!!!!!! DELETE FOR REAL LEVELS
 if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
 
@@ -217,13 +219,13 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                 break;
 
                 case "goal":
-                        console.log("Victory");
+                        //console.log("Victory");
                         //this.game.isRunning = "victory";
                         this.isDead = "Victory";
                 break;
 
                 case "spike":
-                        console.log("Death");
+                        //console.log("Death");
                         //this.game.isRunning = "death";
                         this.isDead = "Dead";
                 break;
@@ -246,7 +248,7 @@ if(this.game.keyDownList['shift']) { console.log("End of update: jumpReq = " + t
 KayNine.prototype.draw = function (ctx) { // this.xPos + this.camera.xPos , this.yPos + this.camera.yPos
 
     // Dead
-    if(this.isDead) { this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
+    if(this.isDead) { /*this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos);*/ }
 
     // Walking
     else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
