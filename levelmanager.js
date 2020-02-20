@@ -1,5 +1,12 @@
 // Change order of adding entities, add to array and sort by type before adding.
 
+LEVEL_LIST = [ "",
+"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
+"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
+"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
+"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
+"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||"]
+
 /*
 He made this hold its own entity list and then performed load and delete functions
 */
@@ -10,10 +17,6 @@ function LevelManager(game, Kay9, lvl){
     Entity.call(this, game);
     // this.spritesheet = spritesheet;
     this.ctx = game.ctx;
-
-    this.LEVEL_LIST = [ "",
-    "|||||\n| vg|\n|   |\n|  ||\n|   |\n|> <|\n|   |\n||| |\n|   |\n| @ |\n|   |\n||||||||||",
-    "|||||\n|v  |\n     \n     \n     \n  g  \n    |\n|> <|\n|   |\n| @ |\n|  ^|\n||||||||||"];
 
     this.entityList = [];
 
@@ -32,10 +35,6 @@ LevelManager.prototype.update = function () {
     }
 }
 
-LEVEL_LIST = [ "",
-"|||||\n| vg|\n|   |\n|  ||\n|   |\n|> <|\n|   |\n||| |\n|   |\n| @ |\n|   |\n||||||||||",
-"|||||\n|v  |\n     \n     \n     \n  g  \n    |\n|> <|\n|   |\n| @ |\n|  ^|\n||||||||||"]
-
 function loadLevel(game, levelNumber) {
 
     var level = this.LEVEL_LIST[levelNumber];
@@ -45,7 +44,7 @@ function loadLevel(game, levelNumber) {
 
     x = 0;
     y = 0;
-    blockwidth  = 187; // this blockwidth's time is limited 
+    blockwidth  = 65; // this blockwidth's time is limited
     // blockwidth = 65; eventually we'll use this ; for testing load and such i'll keep this commented out
     blockHeight = 65;
 
@@ -55,6 +54,7 @@ function loadLevel(game, levelNumber) {
             case(' '): break; // Nothing
 
             case('|'):
+            case('-'):
                 var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight, camera);
                 game.addEntity(f);
                 this.entityList[i] = f;    break; // Wall
