@@ -51,10 +51,12 @@ function loadLevel(game, levelNumber) {
 
     var level = this.LEVEL_LIST[levelNumber];
     //this.entityList = [];
-    game.entityList = [];
+    //game.entityList = [];
     // for(a = 2 ; a < this.game.entities.length ; a++){
     //     this.entityList[a].removeFromWorld = true;
     // }
+
+    game.entities.length = 0;
 
     var camera = new Camera();
 
@@ -119,7 +121,7 @@ function loadLevel(game, levelNumber) {
     }
     game.addEntity(camera);
 
-    var lvlMngr = new LevelManager(game, kayNine, levelNumber);
+    var lvlMngr = new LevelManager(game, kayNine, levelNumber); // This needs to be here because lvlMngr needs to be in the new entities update list
     game.addEntity(lvlMngr);
 
     //return entityList;
@@ -142,6 +144,18 @@ function beginGame(game, level) {
     loadLevel(this, level);
 
 }
+
+
+// function clearAllEntities(game){
+
+//     for(const ent in this.game.entities){
+//         this.game.entities[ent].
+
+        
+
+//     }
+
+// }
 
 // function level1(game) {
 

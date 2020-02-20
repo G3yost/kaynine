@@ -61,14 +61,14 @@ KayNine.prototype.update = function () {
 
     console.log(this.isDead);
 
-// !!!!!!!! DELETE FOR REAL LEVELS
-if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
+// // !!!!!!!! DELETE FOR REAL LEVELS
+// if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
 
-    this.xPos = 100;
-    this.yPos = 100;
+//     this.xPos = 100;
+//     this.yPos = 100;
 
-} else { // REMOVE LAST BRACE
-// !!!!!!!! DELETE FOR REAL LEVELS
+// } else { // REMOVE LAST BRACE
+// // !!!!!!!! DELETE FOR REAL LEVELS
 
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
@@ -233,7 +233,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
                 default:
             }
         }
-    }
+    //}
 
     if(this.onGround === null) { this.onGround = false; }
 
