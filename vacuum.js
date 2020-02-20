@@ -21,6 +21,6 @@ Vacuum.prototype.update = function () {
 
 Vacuum.prototype.draw = function (ctx) {
     ctx.drawImage(this.spritesheet,
-                    this.xPos + this.camera.xPos, this.yPos + this.camera.yPos);
+                    this.xPos - this.camera.xPos, this.yPos - this.camera.yPos);
     Entity.prototype.draw.call(this);
 }

@@ -20,6 +20,6 @@ Lazer.prototype.update = function () {
 
 Lazer.prototype.draw = function (ctx) {
     ctx.drawImage(this.spritesheet,
-                    this.xPosition + this.camera.xPosition, this.yPosition + this.camera.yPosition);
+                    this.xPosition - this.camera.xPosition, this.yPosition - this.camera.yPosition);
     Entity.prototype.draw.call(this);
 }

@@ -22,6 +22,6 @@ Goal.prototype.draw = function (ctx) {
 
     //this.goalAnim.drawFrame(this.spritesheet, this.xCam, this.yCam, 0.2);
     //this.goalAnim.drawFrame(this.game.clockTick, ctx, this.xCam, this.yCam, 0.35 );
-    this.goalAnim.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos, this.yPos + this.camera.yPos, 0.35 );
+    this.goalAnim.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos, this.yPos - this.camera.yPos, 0.35 );
     Entity.prototype.draw.call(this);
 }

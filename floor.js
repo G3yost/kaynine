@@ -19,8 +19,8 @@ Floor.prototype.update = function () {
 
 Floor.prototype.draw = function (ctx) {
 
-    
+
     //ctx.drawImage(this.spritesheet, this.xCam, this.yCam);
-    ctx.drawImage(this.spritesheet, this.xPos + this.camera.xPos, this.yPos + this.camera.yPos);
+    ctx.drawImage(this.spritesheet, this.xPos - this.camera.xPos, this.yPos - this.camera.yPos);
     Entity.prototype.draw.call(this);
 }

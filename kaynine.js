@@ -245,30 +245,30 @@ if(this.game.keyDownList['shift']) { console.log("End of update: jumpReq = " + t
     Entity.prototype.update.call(this);
 }}
 
-KayNine.prototype.draw = function (ctx) { // this.xPos + this.camera.xPos , this.yPos + this.camera.yPos
+KayNine.prototype.draw = function (ctx) { // this.xPos - this.camera.xPos , this.yPos - this.camera.yPos
 
     // Dead
-    if(this.isDead) { /*this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos);*/ }
+    if(this.isDead) { /*this.deathAnimation.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos);*/ }
 
     // Walking
-    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
-    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
+    else if (this.onGround && this.facingRight && this.xVel != 0) { this.walkRight.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
+    else if (this.onGround && !this.facingRight && this.xVel != 0) { this.walkLeft.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
 
     // Idle
-    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
-    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
+    else if (this.onGround && this.facingRight) { this.idleRight.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
+    else if (this.onGround && !this.facingRight) { this.idleLeft.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
 
     // Wall Climbing
-    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
-    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
+    else if (this.onWall && this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbRight.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
+    else if (this.onWall && !this.facingRight && this.game.keyDownList['w'] && this.yVel !=0) { this.wallClimbLeft.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
 
     // Wall Hanging
-    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
-    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
+    else if (this.onWall && this.facingRight) { this.wallHangRight.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
+    else if (this.onWall && !this.facingRight) { this.wallHangLeft.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
 
     // Jumping
-    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
-    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos + this.camera.xPos , this.yPos + this.camera.yPos); }
+    else if (this.facingRight) { this.jumpRight.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
+    else                       { this.jumpLeft.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos); }
 
     Entity.prototype.draw.call(this);
 }
