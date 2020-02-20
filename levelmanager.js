@@ -2,7 +2,7 @@
 
 LEVEL_LIST = [ "",
 "|||||||||||||\n|     g     |\n|           |\n|           |\n|>         <|\n|>         <|\n|>         <|\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
-"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
+"|||||||||||||\n|           |\n|           |\n|           |\n|   ^><v    |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
 "|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
 "|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
 "|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||"]
@@ -33,12 +33,12 @@ LevelManager.prototype.constructor = LevelManager;
 
 LevelManager.prototype.update = function () {
     switch(this.K9.isDead){
-        case "Dead": 
+        case "Dead":
             loadLevel(this.game, this.level);
             console.log("You die die");
         break;
 
-        case "Victory": 
+        case "Victory":
             loadLevel(this.game, this.level + 1);
             console.log("You win");
         break;
