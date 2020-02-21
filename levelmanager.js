@@ -3,9 +3,7 @@
 LEVEL_LIST = [ "",
 "|||||||||||||\n|     g     |\n|           |\n|           |\n|>         <|\n|>         <|\n|>         <|\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
 "|||||||||||||\n|           |\n|           |\n|           |\n|   ^><v    |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
-"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
-"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
-"|||||||||||||\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||"]
+""]
 
 /*
 He made this hold its own entity list and then performed load and delete functions
@@ -35,12 +33,12 @@ LevelManager.prototype.update = function () {
     switch(this.K9.isDead){
         case "Dead":
             loadLevel(this.game, this.level);
-            console.log("You die die");
+            //console.log("You die die");
         break;
 
         case "Victory":
             loadLevel(this.game, this.level + 1);
-            console.log("You win");
+            //console.log("You win");
         break;
 
         default : break; // nothing
@@ -56,7 +54,15 @@ function loadLevel(game, levelNumber) {
     //     this.entityList[a].removeFromWorld = true;
     // }
 
+    // add a background inside the load level
+    // if levelLength === 0 put up win screen ; else normal loadLevel actions
+
     game.entities.length = 0;
+
+    if( level.length === 0){
+        var win = new BackGround(game, ASSET_MANAGER.getAsset("img/win.jpg"));
+        game.addEntity(win); 
+    } else {
 
     var camera = new Camera();
 
@@ -124,7 +130,7 @@ function loadLevel(game, levelNumber) {
     var lvlMngr = new LevelManager(game, kayNine, levelNumber); // This needs to be here because lvlMngr needs to be in the new entities update list
     game.addEntity(lvlMngr);
 
-    //return entityList;
+    }    //return entityList;
 }
 
 function beginGame(game, level) {

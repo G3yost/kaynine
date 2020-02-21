@@ -1,6 +1,7 @@
 var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("img/background.png");
+ASSET_MANAGER.queueDownload("img/win.jpg");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
 ASSET_MANAGER.queueDownload("img/coin.png");
 
@@ -37,7 +38,7 @@ ASSET_MANAGER.downloadAll(function () {
 
     var k9 = new KayNine(gameEngine, -200, -200);
     var lvlMng = new LevelManager(gameEngine, k9, 1);
-    var bg = new Background(gameEngine, ASSET_MANAGER.getAsset("img/background.png"));
+    var bg = new Background(gameEngine, ASSET_MANAGER.getAsset("img/background.png"), false);
     gameEngine.addEntity(bg);
 
     gameEngine.init(ctx);
