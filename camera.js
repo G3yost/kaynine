@@ -4,8 +4,8 @@ function Camera (game) {
 	this.type = "camera";
 	this.width = document.getElementById('gameWorld').width;
 	this.height = document.getElementById('gameWorld').height;
-	this.horBuff = 250;
-	this.vertBuff = 200;
+	this.horBuff = 400;
+	this.vertBuff = 250;
 	this.kaynine = null;
 	//	Makes Camera object an entity
 	Entity.call(this, game, 0, 0, this.width, this.height, this);
