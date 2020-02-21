@@ -40,7 +40,7 @@ function KayNine(game, xPos, yPos, camera) {
     this.xMax = 10;
 
     this.jumpVelocity = 12.5;
-    this.wallJumpVelocity = this.jumpVelocity / .75;
+    this.wallJumpVelocity = this.jumpVelocity * 3 / 4;
     this.groundAccel = 0.5;
     this.wallAccel = this.groundAccel / 8;
     this.airAccel = this.groundAccel / 2;
