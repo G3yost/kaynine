@@ -1,9 +1,8 @@
 // Change order of adding entities, add to array and sort by type before adding.
 
 LEVEL_LIST = [ "",
-"|||||||||||||\n|     g     |\n|           |\n|           |\n|>         <|\n|>         <|\n|>         <|\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
+"||||||||||||||||||||||||||||||\n |                            |\n |                            |\n |                          g |\n |              ||||          |\n |              |          ||||\n |              |          |  |\n |                         |  |\n |   |||||||                  |\n |         |       ^          |\n |         |       |          |\n |         |       |          |\n |||       |       |          |\n |||       |       |          |\n |         |       |          |\n |         |       |          |\n |                 |          |\n |                 |          |\n |                 |          |\n |                 |          |\n |                 ||||||||||||\n |                            |\n |||||||                      |\n |||||||        ||            |\n |||||||                      |\n |||||||                      |\n |||||||                      |\n |||||||                      |\n |||||||^^^                   |\n ||||||||||||||||||||||||     |\n |                            |\n | @                          |\n |                            |\n ||||||||||||||||||||||||||||||",
 "||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|          ^^^^^                                 |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
-"|||||||||||||\n|           |\n|           |\n|           |\n|   ^><v    |\n|           |\n|           |\n|           |\n| @         |\n|           |\n|           |\n|||||||||||||",
 ""]
 
 /*
@@ -59,73 +58,75 @@ function loadLevel(game, levelNumber) {
     // if levelLength === 0 put up win screen ; else normal loadLevel actions
 
     game.entities.length = 0;
+    var camera = new Camera();
 
     if( level.length === 0){
-        var win = new BackGround(game, ASSET_MANAGER.getAsset("img/win.jpg"));
+        var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"), camera);
         game.addEntity(win); 
     } else {
 
-    var camera = new Camera();
+        var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), camera);
+        game.addEntity(bg);
 
-    x = 0;
-    y = 0;
-    blockwidth  = 65; // this blockwidth's time is limited
-    // blockwidth = 65; eventually we'll use this ; for testing load and such i'll keep this commented out
-    blockHeight = 65;
+        x = 0;
+        y = 0;
+        blockwidth  = 65; // this blockwidth's time is limited
+        // blockwidth = 65; eventually we'll use this ; for testing load and such i'll keep this commented out
+        blockHeight = 65;
 
-    for(i = 0; i < level.length; i++) {
+        for(i = 0; i < level.length; i++) {
 
-        switch(level.charAt(i)) {
-            case(' '): break; // Nothing
+            switch(level.charAt(i)) {
+                case(' '): break; // Nothing
 
-            case('|'):
-            case('-'):
-                var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight, camera);
-                game.addEntity(f);
-                /*this.entityList[i] = f;*/    break; // Wall
+                case('|'):
+                case('-'):
+                    var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight, camera);
+                    game.addEntity(f);
+                    /*this.entityList[i] = f;*/    break; // Wall
 
-            case('@'):
-                var kayNine = new KayNine(game, x, y, camera);
-                this.K9 = kayNine;
-                game.addEntity(kayNine);
-                camera.attachKaynine(kayNine);
-                /*this.entityList[i] = kayNine;*/ break;           // KayNine
+                case('@'):
+                    var kayNine = new KayNine(game, x, y, camera);
+                    this.K9 = kayNine;
+                    game.addEntity(kayNine);
+                    camera.attachKaynine(kayNine);
+                    /*this.entityList[i] = kayNine;*/ break;           // KayNine
 
-            case('g'):
-                var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y, camera);
-                game.addEntity(g);
-                /*this.entityList[i] = g;*/ break;              // Goal
+                case('g'):
+                    var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y, camera);
+                    game.addEntity(g);
+                    /*this.entityList[i] = g;*/ break;              // Goal
 
-            case('['): game.addEntity(new Turret(game, x, y, true, camera)); break;      // Right Facing Turret
-            case(']'): game.addEntity(new Turret(game, x, y, false, camera)); break;     // Left  Facing Turret
-            // not used at the moment ; will get to later
+                case('['): game.addEntity(new Turret(game, x, y, true, camera)); break;      // Right Facing Turret
+                case(']'): game.addEntity(new Turret(game, x, y, false, camera)); break;     // Left  Facing Turret
+                // not used at the moment ; will get to later
 
-            case('^'):
-                var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
-                game.addEntity(sUp);
-                /*this.entityList[i] = sUp;*/ break;       // Upward    Facing Spike
+                case('^'):
+                    var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
+                    game.addEntity(sUp);
+                    /*this.entityList[i] = sUp;*/ break;       // Upward    Facing Spike
 
-            case('v'):
-                var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
-                game.addEntity(sDown);
-                /*this.entityList[i] = sDown;*/ break;       // Upward    Facing Spike  // Downward  Facing Spike
+                case('v'):
+                    var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
+                    game.addEntity(sDown);
+                    /*this.entityList[i] = sDown;*/ break;       // Upward    Facing Spike  // Downward  Facing Spike
 
-            case('<'):
-                var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x + blockwidth - 65, y, 65, 65, camera);
-                game.addEntity(sLeft);
-                /*this.entityList[i] = sLeft;*/ break;     // Leftward  Facing Spike
+                case('<'):
+                    var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x + blockwidth - 65, y, 65, 65, camera);
+                    game.addEntity(sLeft);
+                    /*this.entityList[i] = sLeft;*/ break;     // Leftward  Facing Spike
 
-            case('>'):
-                var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, camera);
-                game.addEntity(sRight);
-                /*this.entityList[i] = sRight;*/ break;    // Rightward Facing Spike
+                case('>'):
+                    var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, camera);
+                    game.addEntity(sRight);
+                    /*this.entityList[i] = sRight;*/ break;    // Rightward Facing Spike
 
-            case('\n'): y = y + blockHeight; x = -blockwidth; break; // Next line
+                case('\n'): y = y + blockHeight; x = -blockwidth; break; // Next line
 
-            default: console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
+                default: console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
+            }
+            x = x + blockwidth;
         }
-        x = x + blockwidth;
-    }
     game.addEntity(camera);
 
     var lvlMngr = new LevelManager(game, kayNine, levelNumber); // This needs to be here because lvlMngr needs to be in the new entities update list
