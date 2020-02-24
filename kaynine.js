@@ -3,8 +3,8 @@ function KayNine(game, xPos, yPos, camera) {
     this.type = "kaynine";
 
     // Animations
-    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_right.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_left.png"), 0, 0, 128, 128, 0.2, 1, true, true);
+    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_right.png"), 0, 0, 128, 128, 0.075, 8, true, false);
+    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_left.png"), 0, 0, 128, 128, 0.075, 8, true, true);
 	console.log(this.idleLeft);
     this.jumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_right.png"), 0, 0, 128, 128, 0.2, 8, true, false);
     this.jumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_left.png"), 0, 0, 128, 128, 0.2, 8, true, false);

@@ -25,6 +25,7 @@ ASSET_MANAGER.queueDownload("./img/kay_nine_wall_hanging_right.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_wall_hanging_left.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump_right.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump_left.png");
+ASSET_MANAGER.queueDownload("./img/kay_nine_death_animation.png");
 
 ASSET_MANAGER.queueDownload("./img/kay_nine_idle_temp.png");    // !!! CHANGE FILE NAME IN ANIM
 ASSET_MANAGER.queueDownload("./img/kay_nine_running_temp.png"); // !!! CHANGE FILE NAME IN ANIM NEED???
