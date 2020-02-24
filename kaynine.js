@@ -23,8 +23,8 @@ function KayNine(game, xPos, yPos, camera) {
 
     this.wallJumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_right.png"), 0, 0, 128, 128, 0.2, 5, true, false);
     this.wallJumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_left.png"), 0, 0, 128, 128, 0.2, 5, true, false);
-	
-	
+
+
 
     // Status
     this.jumpReq  = false;
@@ -75,7 +75,7 @@ KayNine.prototype.update = function () {
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
 
-    if(this.isDead) { 
+    if(this.isDead) {
 
         this.xVel = 0;
         this.yVel = 0;
@@ -142,6 +142,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
     } else if (this.onWall) { // Wall move set
 
+        /*
         this.yVel = 0;
         this.xVel = 0;
 
@@ -158,7 +159,49 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
             else { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
 
             this.jumpREQ = true;
+        }*/
+
+        this.xVel = 0;
+
+        if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) {
+
+            this.yVel = this.yAccel;
+
+        } else if(!this.facingRight  && this.game.keyDownList['a']) {
+
+            this.yVel = 0;
+
+        } else if(this.facingRight && this.game.keyDownList['d']) {
+
+            this.yVel = 0;
+
+        } else {
+
+            this.yVel = -this.yAccel;
         }
+
+
+        if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) {
+
+            if(this.facingRight) {
+                this.xPos = this.xPos - 1;
+            } else {
+                this.xPos = this.xPos + 1;
+            }
+        }
+
+        if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
+        if(this.game.keyDownList['space'] && !this.jumpREQ) {
+
+            if(this.facingRight) { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+            else { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
+
+            this.jumpREQ = true;
+        }
+
+
+
+
     } else {
 
         if(this.game.keyDownList['a'] && !this.game.keyDownList['d']) { this.xVel -= this.xAccel * this.game.airFriction; }
