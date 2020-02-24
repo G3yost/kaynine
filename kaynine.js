@@ -3,9 +3,9 @@ function KayNine(game, xPos, yPos, camera) {
     this.type = "kaynine";
 
     // Animations
-    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_right.png"), 0, 0, 128, 128, 0.2, 1, true, false);
-    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_running_left.png"), 0, 0, 128, 128, 0.2, 1, true, true);
-
+    this.idleRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_right.png"), 0, 0, 128, 128, 0.2, 1, true, false);
+    this.idleLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_idle_left.png"), 0, 0, 128, 128, 0.2, 1, true, true);
+	console.log(this.idleLeft);
     this.jumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_right.png"), 0, 0, 128, 128, 0.2, 8, true, false);
     this.jumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_jumping_left.png"), 0, 0, 128, 128, 0.2, 8, true, false);
 
@@ -23,6 +23,8 @@ function KayNine(game, xPos, yPos, camera) {
 
     this.wallJumpRight = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_right.png"), 0, 0, 128, 128, 0.2, 5, true, false);
     this.wallJumpLeft  = new Animation(ASSET_MANAGER.getAsset("./img/kay_nine_wall_jump_left.png"), 0, 0, 128, 128, 0.2, 5, true, false);
+	
+	
 
     // Status
     this.jumpReq  = false;
@@ -59,7 +61,7 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
-    console.log(this.isDead);
+    //console.log(this.isDead);
 
 // // !!!!!!!! DELETE FOR REAL LEVELS
 // if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
@@ -73,7 +75,7 @@ KayNine.prototype.update = function () {
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
 
 
-    if(this.isDead) {
+    if(this.isDead) { 
 
         this.xVel = 0;
         this.yVel = 0;
@@ -210,7 +212,7 @@ console.log(groundCount);
                                     this.yVel = 0;
                                     this.onGround = true;
                                 }
-console.log(this.onGround);
+//console.log(this.onGround);
 /*
                                 if(!this.onWall || this.onGround === null) {
                                     this.yPos = entity.boundingBox.top - this.boundingBox.height;

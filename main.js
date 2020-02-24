@@ -13,8 +13,8 @@ ASSET_MANAGER.queueDownload("img/spike_down.png");
 ASSET_MANAGER.queueDownload("img/flag.png");
 
 // Files
-    //ASSET_MANAGER.queueDownload("./img/kay_nine_idle_right.png");
-    //ASSET_MANAGER.queueDownload("./img/kay_nine_idle_left.png");
+    ASSET_MANAGER.queueDownload("./img/kay_nine_idle_right.png");
+    ASSET_MANAGER.queueDownload("./img/kay_nine_idle_left.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_jumping_right.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_jumping_left.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_running_right.png");
