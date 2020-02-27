@@ -12,8 +12,6 @@ function Camera (game) {
 	this.boundingBox = new BoundingBox(this.xPos + this.horBuff, this.yPos + this.vertBuff, this.width - (2 * this.horBuff), this.height - (2 * this.vertBuff));	// creates camera bounding box that KayNine interacts with
 }
 
-
-
 Camera.prototype = new Entity();
 Camera.prototype.constructor = Camera;
 Camera.prototype.attachKaynine = function(kaynine) {
@@ -50,8 +48,8 @@ Camera.prototype.update = function ()	{
 
 Camera.prototype.draw = function(ctx) {
 
-	/*ctx.rect(this.boundingBox.left - this.xPos, this.boundingBox.top - this.yPos, this.boundingBox.width, this.boundingBox.height);
-	ctx.stroke();*/
+	ctx.rect(this.boundingBox.left - this.xPos, this.boundingBox.top - this.yPos, this.boundingBox.width, this.boundingBox.height);
+	ctx.stroke();
 
 }
 

@@ -61,19 +61,7 @@ KayNine.prototype.constructor = KayNine;
 
 KayNine.prototype.update = function () {
 
-    //console.log(this.isDead);
-
-// // !!!!!!!! DELETE FOR REAL LEVELS
-// if(this.xPos > 800 || this.xPos < -200 || this.yPos > 800 || this.y < -200) {
-
-//     this.xPos = 100;
-//     this.yPos = 100;
-
-// } else { // REMOVE LAST BRACE
-// // !!!!!!!! DELETE FOR REAL LEVELS
-
 if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " + this.jumpReq + ", onGround = " + this.onGround + ", onWall = " + this.onWall + ", xPos = " + this.xPos + ", xVel = " + this.xVel + ", xAccel = " + this.xAccel + ", yPos = " + this.yPos + ", yVel = " + this.yVel + ", yAccel = " + this.yAccel); }
-
 
     if(this.isDead) {
 
@@ -142,25 +130,6 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
 
     } else if (this.onWall) { // Wall move set
 
-        /*
-        this.yVel = 0;
-        this.xVel = 0;
-
-        if(this.facingRight  && (!this.game.keyDownList['d'] || this.game.keyDownList['a'])) { this.xPos = this.xPos - 1; }
-        if(!this.facingRight && (!this.game.keyDownList['a'] || this.game.keyDownList['d'])) { this.xPos = this.xPos + 1; }
-
-        if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) { this.yVel += this.yAccel; }
-        if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) { this.yVel -= this.yAccel; }
-
-        if(!this.game.keyDownList['space']) { this.jumpREQ = false; }
-        if(this.game.keyDownList['space'] && !this.jumpREQ) {
-
-            if(this.facingRight) { this.xVel = -this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
-            else { this.xVel = this.wallJumpVelocity; this.yVel = this.wallJumpVelocity; }
-
-            this.jumpREQ = true;
-        }*/
-
         this.xVel = 0;
 
         if(this.game.keyDownList['w'] && !this.game.keyDownList['s']) {
@@ -181,7 +150,7 @@ if(this.game.keyDownList['shift']) { console.log("Start of update: jumpReq = " +
         }
 
 
-        if(this.game.keyDownList['s'] && !this.game.keyDownList['w']) {
+        if(this.game.keyDownList['s'] && !(this.game.keyDownList['w'] || (!this.facingRight  && this.game.keyDownList['a']) || (this.facingRight && this.game.keyDownList['d']))) {
 
             if(this.facingRight) {
                 this.xPos = this.xPos - 1;
