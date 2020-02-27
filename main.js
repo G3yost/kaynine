@@ -5,10 +5,19 @@ ASSET_MANAGER.queueDownload("img/win.jpg");
 ASSET_MANAGER.queueDownload("img/smallPlatform.png");
 ASSET_MANAGER.queueDownload("img/coin.png");
 
+//Spikes
 ASSET_MANAGER.queueDownload("img/spike_up.png");
 ASSET_MANAGER.queueDownload("img/spike_left.png");
 ASSET_MANAGER.queueDownload("img/spike_right.png");
 ASSET_MANAGER.queueDownload("img/spike_down.png");
+
+//Lazer
+ASSET_MANAGER.queueDownload("img/lazer_left.png");
+ASSET_MANAGER.queueDownload("img/lazer_right.png");
+
+//Turret
+ASSET_MANAGER.queueDownload("img/turret_left.png");
+ASSET_MANAGER.queueDownload("img/turret_right.png");
 
 ASSET_MANAGER.queueDownload("img/flag.png");
 
