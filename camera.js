@@ -25,19 +25,19 @@ Camera.prototype.update = function ()	{
 	let offsetY = this.yPos;
 	if(!this.boundingBox.collide(this.kaynine.boundingBox)) {
 		if(this.kaynine.boundingBox.right < this.boundingBox.left) {
-			console.log("Left");
+
 			offsetX = this.kaynine.boundingBox.right - this.horBuff;
 		}
 		else if(this.kaynine.boundingBox.left > this.boundingBox.right) {
-			console.log("Right");
+
 			offsetX = this.kaynine.boundingBox.left - (this.horBuff + this.boundingBox.width);
 		}
 		if(this.kaynine.boundingBox.bottom < this.boundingBox.top)	{
-			console.log("Up");
+
 			offsetY = this.kaynine.boundingBox.bottom - this.vertBuff;
 		}
 		else if(this.kaynine.boundingBox.top > this.boundingBox.bottom)	{
-			console.log("Down");
+
 			offsetY = this.kaynine.boundingBox.top - (this.vertBuff + this.boundingBox.height);
 		}
 
@@ -49,8 +49,6 @@ Camera.prototype.update = function ()	{
 Camera.prototype.draw = function(ctx) {
 
 	ctx.rect(this.boundingBox.left - this.xPos, this.boundingBox.top - this.yPos, this.boundingBox.width, this.boundingBox.height);
-	ctx.stroke();
-
 }
 
 Camera.prototype.updatePos = function(x, y)	{

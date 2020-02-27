@@ -3,7 +3,7 @@
 LEVEL_LIST = [ "",
 "||||||||||||||||||||||||||||||\n |                            |\n |                            |\n |                            |\n |                          g |\n |              ||||          |\n |              |          ||||\n |              |          ||||\n |                vvvvvvvvv||||\n |   |||||||          ^^^^^||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |||       |       ||||||||||||\n |||        |      ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                            |\n |||||||                      |\n |||||||        ||            |\n |||||||                      |\n |||||||                      |\n |||||||                      |\n |||||||  [                   |\n |||||||^^[                   |\n ||||||||||||||||||||||||     |\n |                            |\n | @                          |\n |                            |\n ||||||||||||||||||||||||||||||",
 "||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|          ^^^^^                                 |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
-"|||||||||||||||||||||||||||||||||||||\n |           |                       |\n |           |                       |\n |           |                       |\n |           |                       |\n |                        |||||   ||||\n | g                  ^^^     |      |\n |                 ^^^        |      |\n ||||        ||||             |      |\n |  |                         |      |\n |                                   |\n |                                   |\n |                                   |\n |      ||||                         |\n |         |              ||||||||||||\n |         |              ||||||||||||\n |         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n |||||       <>                      |\n |||||       <>                      |\n |           ||                      |\n |     |     |                       |\n |     |     |     ||||||            |\n |     |     |          |            |\n |     |                |            |\n |     |                |            |\n |     |                             |\n |^^^^^|    ||||                     |\n |||||||                          ||||\n |                                |  |\n |                                   |\n |                      ||||         |\n |                                   |\n |                                   |\n |        ||||                       |\n |                                   |\n | @                                 |\n |                   	             |\n ||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||", 
+"|||||||||||||||||||||||||||||||||||||\n |           |                       |\n |           |                       |\n |           |                       |\n |           |                       |\n |                        |||||   ||||\n | g                  ^^^     |      |\n |                 ^^^        |      |\n ||||        ||||             |      |\n |  |                         |      |\n |                                   |\n |                                   |\n |                                   |\n |      ||||                         |\n |         |              ||||||||||||\n |         |              ||||||||||||\n |         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n |||||       <>                      |\n |||||       <>                      |\n |           ||                      |\n |     |     |                       |\n |     |     |     ||||||            |\n |     |     |          |            |\n |     |                |            |\n |     |                |            |\n |     |                             |\n |^^^^^|    ||||                     |\n |||||||                          ||||\n |                                |  |\n |                                   |\n |                      ||||         |\n |                                   |\n |                                   |\n |        ||||                       |\n |                                   |\n | @                                 |\n |                   	             |\n ||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||",
 ""]
 
 /*
@@ -13,15 +13,17 @@ He also had to add lvlMngr back into its own list once he emptied it
 Current issue is that the lvlMngr is not being updated beacuse it is not in the entitylist of the gameEngine
 
 */
-function LevelManager(game, Kay9, lvl){
+function LevelManager(game, Kay9, lvl, camera){
     // this.moving = move;
     this.K9 = Kay9;
     this.level = lvl;
-    Entity.call(this, game);
+    Entity.call(this, game, 0, 0, 0, 0);
+
     // this.spritesheet = spritesheet;
     this.ctx = game.ctx;
 
     this.entityList = [];
+    this.camera = camera;
 
     //beginGame(game, this.level);
 
@@ -59,17 +61,18 @@ function loadLevel(game, levelNumber) {
     // if levelLength === 0 put up win screen ; else normal loadLevel actions
 
     game.entities.length = 0;
-    var camera = new Camera();
+    var cam = new Camera();
 
     if( level.length === 0){
         var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"), camera);
         game.addEntity(win);
     } else {
 
-        var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), camera);
+        var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), cam);
         game.addEntity(bg);
 
         x = 0;
+        xMax = x;
         y = 0;
         blockwidth  = 65; // this blockwidth's time is limited
         // blockwidth = 65; eventually we'll use this ; for testing load and such i'll keep this commented out
@@ -82,49 +85,49 @@ function loadLevel(game, levelNumber) {
 
                 case('|'):
                 case('-'):
-                    var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight, camera);
+                    var f = new Floor(game, ASSET_MANAGER.getAsset("img/smallPlatform.png"), x, y, blockwidth, blockHeight, cam);
                     game.addEntity(f);
                     /*this.entityList[i] = f;*/    break; // Wall
 
                 case('@'):
-                    var kayNine = new KayNine(game, x, y, camera);
+                    var kayNine = new KayNine(game, x, y, cam);
                     this.K9 = kayNine;
                     game.addEntity(kayNine);
-                    camera.attachKaynine(kayNine);
+                    cam.attachKaynine(kayNine);
                     /*this.entityList[i] = kayNine;*/ break;           // KayNine
 
                 case('g'):
-                    var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y, camera);
+                    var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y, cam);
                     game.addEntity(g);
                     /*this.entityList[i] = g;*/ break;              // Goal
 
                 case('['):
-                    var RT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_right.png"), x, y, 30, 10, true,  camera);
+                    var RT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_right.png"), x, y, 30, 10, true,  cam);
                     game.addEntity(RT);
                     break;      // Right Facing Turret
 
-                case(']'): 
-                    var LT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_left.png"), x, y, 30, 10, false,  camera);
+                case(']'):
+                    var LT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_left.png"), x, y, 30, 10, false,  cam);
                     game.addEntity(LT);
                     break;          // Left Facing Turret
-                
+
                 case('^'):
-                    var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, camera);
+                    var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, "u", cam);
                     game.addEntity(sUp);
                     /*this.entityList[i] = sUp;*/ break;       // Upward    Facing Spike
 
                 case('v'):
-                    var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_down.png"), x, y, 65, 65, camera);
+                    var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_down.png"), x, y, 65, 65, "d", cam);
                     game.addEntity(sDown);
                     /*this.entityList[i] = sDown;*/ break;       // Upward    Facing Spike  // Downward  Facing Spike
 
-                case('<'):                                                                              
-                    var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x + blockwidth - 65, y, 65, 65, camera);
+                case('<'):
+                    var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x, y, 65, 65, "l", cam);
                     game.addEntity(sLeft);
                     /*this.entityList[i] = sLeft;*/ break;     // Leftward  Facing Spike
 
                 case('>'):
-                    var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, camera);
+                    var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, "r", cam);
                     game.addEntity(sRight);
                     /*this.entityList[i] = sRight;*/ break;    // Rightward Facing Spike
 
@@ -133,10 +136,11 @@ function loadLevel(game, levelNumber) {
                 default: console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
             }
             x = x + blockwidth;
+            if(x > xMax) { xMax = x; }
         }
-    game.addEntity(camera);
+    game.addEntity(cam);
 
-    var lvlMngr = new LevelManager(game, kayNine, levelNumber); // This needs to be here because lvlMngr needs to be in the new entities update list
+    var lvlMngr = new LevelManager(game, kayNine, levelNumber, cam); // This needs to be here because lvlMngr needs to be in the new entities update list
     game.addEntity(lvlMngr);
 
     }    //return entityList;
