@@ -1,5 +1,5 @@
 function Lazer(game, spritesheet, xPosition, yPosition, speed, faceRight, camera){
-    Entity.call(this, game, xPosition, yPosition + 10, 50, 30, this);
+    Entity.call(this, game, xPosition, yPosition + 50, 50, 10, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
     this.speed = speed;
@@ -7,9 +7,9 @@ function Lazer(game, spritesheet, xPosition, yPosition, speed, faceRight, camera
     this.camera = camera;
 
     if(this.faceRight) {
-        this.travel  = new Animation(ASSET_MANAGER.getAsset("./img/lazer_right.png"), 0, 0, 50, 50, 0.2, 7, true, false);
+        this.travel  = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, false);
     } else {
-        this.travel = new Animation(ASSET_MANAGER.getAsset("./img/lazer_left.png"), 0, 0, 50, 50, 0.2, 7, true, false);
+        this.travel = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, false);
     }
     // collision behavior can mimic that of a spike
     // this is technically a spike on the move
@@ -21,11 +21,12 @@ Lazer.prototype.constructor = Lazer;
 
 Lazer.prototype.update = function () {
 
- if(faceRight){
-     this.xPos += this.game.clockTick * this.speed;
- } else {
-     this.xPos -= this.game.clockTick * this.speed;
- }
+    var distance = this.game.clockTick * this.speed;
+    if(this.faceRight){
+        this.xPos += distance;
+    } else {
+        this.xPos -= distance;
+    }
 
  this.boundingBox.update(this.xPos, this.yPos);
 
@@ -33,7 +34,11 @@ Lazer.prototype.update = function () {
 
     entity = this.game.entities[ent];
     if (this.boundingBox.collide(entity.boundingBox)) {
-        this.removeFromWorld = true;
+        if(entity.type === "floor") {
+            console.log("Lazer has hit something");
+            console.log(entity.type);
+            this.removeFromWorld = true;
+        }
     }
     }
 
@@ -41,6 +46,10 @@ Lazer.prototype.update = function () {
 
 
 Lazer.prototype.draw = function (ctx) {
+
+    //ctx.rect(this.xPos - this.camera.xPos, this.yPos - this.camera.yPos, this.boundingBox.width, this.boundingBox.height);
+	
+
     this.travel.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos)
     Entity.prototype.draw.call(this);
 }
