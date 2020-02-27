@@ -112,22 +112,22 @@ function loadLevel(game, levelNumber) {
                     break;          // Left Facing Turret
 
                 case('^'):
-                    var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, cam);
+                    var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, "u", cam);
                     game.addEntity(sUp);
                     /*this.entityList[i] = sUp;*/ break;       // Upward    Facing Spike
 
                 case('v'):
-                    var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_down.png"), x, y, 65, 65, cam);
+                    var sDown = new Spike(game, ASSET_MANAGER.getAsset("img/spike_down.png"), x, y, 65, 65, "d", cam);
                     game.addEntity(sDown);
                     /*this.entityList[i] = sDown;*/ break;       // Upward    Facing Spike  // Downward  Facing Spike
 
                 case('<'):
-                    var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x, y, 65, 65, cam);
+                    var sLeft = new Spike(game, ASSET_MANAGER.getAsset("img/spike_left.png"), x, y, 65, 65, "l", cam);
                     game.addEntity(sLeft);
                     /*this.entityList[i] = sLeft;*/ break;     // Leftward  Facing Spike
 
                 case('>'):
-                    var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, cam);
+                    var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, "r", cam);
                     game.addEntity(sRight);
                     /*this.entityList[i] = sRight;*/ break;    // Rightward Facing Spike
 
