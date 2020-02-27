@@ -63,7 +63,7 @@ function loadLevel(game, levelNumber) {
 
     if( level.length === 0){
         var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"), camera);
-        game.addEntity(win); 
+        game.addEntity(win);
     } else {
 
         var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), camera);
@@ -166,7 +166,7 @@ function beginGame(game, level) {
 //     for(const ent in this.game.entities){
 //         this.game.entities[ent].
 
-        
+
 
 //     }
 
