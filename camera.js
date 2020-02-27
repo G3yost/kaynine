@@ -49,8 +49,6 @@ Camera.prototype.update = function ()	{
 Camera.prototype.draw = function(ctx) {
 
 	ctx.rect(this.boundingBox.left - this.xPos, this.boundingBox.top - this.yPos, this.boundingBox.width, this.boundingBox.height);
-	ctx.stroke();
-
 }
 
 Camera.prototype.updatePos = function(x, y)	{
