@@ -1,8 +1,8 @@
 // Change order of adding entities, add to array and sort by type before adding.
 
 LEVEL_LIST = [ "",
-"||||||||||||||||||||||||||||||\n |                            |\n |                            |\n |                            |\n |                          g |\n |              ||||          |\n |              |          ||||\n |              |          ||||\n |                vvvvvvvvv||||\n |   |||||||          ^^^^^||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |||       |       ||||||||||||\n |||        |      ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                            |\n |||||||                      |\n |||||||        ||            |\n |||||||                      |\n |||||||                      |\n |||||||                      |\n |||||||  [                   |\n |||||||^^[                   |\n ||||||||||||||||||||||||     |\n |                            |\n | @                          |\n |                            |\n ||||||||||||||||||||||||||||||",
-"||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|          ^^^^^                                 |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
+"||||||||||||||||||||||||||||||\n |                            |\n |                            |\n |                            |\n |                          g |\n |              ||||          |\n |              |          ||||\n |              |          ||||\n |                vvvvvvvvv||||\n |   |||||||          ^^^^^||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |||       |       ||||||||||||\n |||        |      ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                            |\n |||||||                      |\n |||||||        ||            |\n |||||||                      |\n |||||||                      |\n |||||||                      |\n |||||||                       |\n ||||||||||                   |\n ||||||||||||||||||||||||     |\n |                            |\n | @                          |\n |                            |\n ||||||||||||||||||||||||||||||",
+"||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|   [       ^^^^^                                 |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
 "|||||||||||||||||||||||||||||||||||||\n |           |                       |\n |           |                       |\n |           |                       |\n |           |                       |\n |                        |||||   ||||\n | g                  ^^^     |      |\n |                 ^^^        |      |\n ||||        ||||             |      |\n |  |                         |      |\n |                                   |\n |                                   |\n |                                   |\n |      ||||                         |\n |         |              ||||||||||||\n |         |              ||||||||||||\n |         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n |||||       <>                      |\n |||||       <>                      |\n |           ||                      |\n |     |     |                       |\n |     |     |     ||||||            |\n |     |     |          |            |\n |     |                |            |\n |     |                |            |\n |     |                             |\n |^^^^^|    ||||                     |\n |||||||                          ||||\n |                                |  |\n |                                   |\n |                      ||||         |\n |                                   |\n |                                   |\n |        ||||                       |\n |                                   |\n | @                                 |\n |                   	             |\n ||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||",
 ""]
 
@@ -25,6 +25,9 @@ function LevelManager(game, Kay9, lvl, camera){
     this.entityList = [];
     this.camera = camera;
 
+    this.type = "lvlMngr";
+    this.lvlSize = 0;
+
     //beginGame(game, this.level);
 
 }
@@ -35,6 +38,13 @@ LevelManager.prototype.constructor = LevelManager;
 LevelManager.prototype.update = function () {
     switch(this.K9.isDead){
         case "Dead":
+            // for( const ent in this.game.entities){
+            //     entity = this.game.entities[ent];
+            //     //entity.removeFromWorld = true;
+            //     // entity.update();
+            //     console.log(entity.type);
+            // }
+            //this.game.entities.length = 0;
             loadLevel(this.game, this.level);
             //console.log("You die die");
         break;
@@ -53,14 +63,12 @@ function loadLevel(game, levelNumber) {
     var level = this.LEVEL_LIST[levelNumber];
     //this.entityList = [];
     //game.entityList = [];
-    // for(a = 2 ; a < this.game.entities.length ; a++){
-    //     this.entityList[a].removeFromWorld = true;
-    // }
 
     // add a background inside the load level
     // if levelLength === 0 put up win screen ; else normal loadLevel actions
 
     game.entities.length = 0;
+
     var cam = new Camera();
 
     if( level.length === 0){
@@ -68,8 +76,8 @@ function loadLevel(game, levelNumber) {
         game.addEntity(win);
     } else {
 
-        var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), cam);
-        game.addEntity(bg);
+        // var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), cam);
+        // game.addEntity(bg);
 
         x = 0;
         xMax = x;
@@ -94,22 +102,22 @@ function loadLevel(game, levelNumber) {
                     this.K9 = kayNine;
                     game.addEntity(kayNine);
                     cam.attachKaynine(kayNine);
-                    /*this.entityList[i] = kayNine;*/ break;           // KayNine
+                break;           // KayNine
 
                 case('g'):
                     var g = new Goal(game, ASSET_MANAGER.getAsset("img/flag.png"),x, y, cam);
                     game.addEntity(g);
-                    /*this.entityList[i] = g;*/ break;              // Goal
+                break;              // Goal
 
                 case('['):
-                    var RT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_right.png"), x, y, 30, 10, true,  cam);
+                    var RT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_right.png"), x, y, 100, 10, "R",  cam);
                     game.addEntity(RT);
-                    break;      // Right Facing Turret
+                break;      // Right Facing Turret
 
                 case(']'):
-                    var LT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_left.png"), x, y, 30, 10, false,  cam);
+                    var LT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_left.png"), x, y, 100, 10, "L",  cam);
                     game.addEntity(LT);
-                    break;          // Left Facing Turret
+                break;          // Left Facing Turret
 
                 case('^'):
                     var sUp = new Spike(game, ASSET_MANAGER.getAsset("img/spike_up.png"), x, y, 65, 65, "u", cam);

@@ -258,13 +258,23 @@ console.log("wall");
 
                 case "goal":
                         //console.log("Victory");
-                        //this.game.isRunning = "victory";
+                        //this.game.isRunning = "victo
                         this.isDead = "Victory";
+                break;
+
+                case "lazer":
+                    this.removeFromWorld = true;
+                    //this.isDead = "Dead";
+                    //this.game.entities.length = 0;
+                    //entity.removeFromWorld = true;
+                    //entity.update();
+                    // this.isDead = "Dead";
                 break;
 
                 case "spike":
                         //console.log("Death");
-                        //this.game.isRunning = "death";
+                        //entity.removeFromWorld = true;
+                        //entity.update(); 
                         this.isDead = "Dead";
                 break;
 

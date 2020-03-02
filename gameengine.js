@@ -333,6 +333,7 @@ this.ctx.canvas.addEventListener("keyup", function(e) {
 
 GameEngine.prototype.addEntity = function(entity) {
     console.log('added entity');
+    //console.log(entity.type);
     this.entities.push(entity);
 }
 
@@ -360,6 +361,7 @@ GameEngine.prototype.update = function() {
 
     for(var i = this.entities.length - 1; i >= 0; --i) {
         if(this.entities[i].removeFromWorld) {
+            console.log(this.entities[i]);
             this.entities.splice(i, 1);
         }
     }
