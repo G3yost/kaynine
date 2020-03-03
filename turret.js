@@ -1,4 +1,4 @@
-function Turret(game, spritesheet, xPosition, yPosition, speed, firerate, faceRight,  camera){
+function Turret(game, spritesheet, xPosition, yPosition, speed, firerate, direction,  camera){
     //this.moving = move;
     Entity.call(this, game, xPosition, yPosition, 65, 65, this);
     this.spritesheet = spritesheet;
@@ -6,17 +6,17 @@ function Turret(game, spritesheet, xPosition, yPosition, speed, firerate, faceRi
     this.camera = camera;
     this.speed = speed;
     this.firerate = firerate;
-    this.faceRight = faceRight;
+    this.direction = direction;
     this.time = 0;
 
     this.right = xPosition + 66;
 
-    console.log("Here");
+    //console.log("Here");
     this.left = xPosition - 66;
 
-//    370 * 280
-    console.log("Here again");
-    this.turrAnim  = new Animation(this.spritesheet, 0, 0, 370, 358, 0.2, 1, true, false);
+//    369 * 280
+    //console.log("Here again");
+    this.turrAnim  = new Animation(this.spritesheet, 0, 0, 369, 358, 0.2, 1, true, false);
 
     this.type = "floor";
 }
@@ -26,20 +26,20 @@ Turret.prototype.constructor = Turret;
 
 Turret.prototype.update = function () {
     this.time +=  this.game.clockTick;
-    console.log("Turret stoof" + this.faceRight);
     if(this.time > this.firerate){
-        console.log("Time for lazer");
-        if (this.faceRight === "R") {
-            console.log("Reached Right lazer");
-            var Pew = new Lazer(this.game, ASSET_MANAGER.getAsset("img/lazer_right.png"), this.right, this.yPos - 10, this.speed, this.faceRight, this.camera);
+        //console.log("Time for lazer");
+        if (this.direction === "R") {
+            //console.log("Reached Right lazer");
+            var Pew = new Lazer(this.game, ASSET_MANAGER.getAsset("img/lazer_right.png"), this.right, this.yPos - 10, this.speed, this.direction, this.camera);
         }
          
-        if (this.faceRight === "L"){
-            console.log("Reached left lazer");
-            var Pew = new Lazer(this.game, ASSET_MANAGER.getAsset("img/lazer_left.png"), this.left, this.yPos - 10, this.speed, this.faceRight,  this.camera);
+        if (this.direction === "L"){
+            this.boundingBox.update(this.xPos + 20, this.yPos);
+            //console.log("Reached left lazer");
+            var Pew = new Lazer(this.game, ASSET_MANAGER.getAsset("img/lazer_left.png"), this.left, this.yPos - 10, this.speed, this.direction,  this.camera);
         }
 
-        this.game.addEntity(Pew);
+        this.game.addEntity(Pew); // add a new lazer to the entity list
         this.time = 0;
     }
     console.log("Ending turret");

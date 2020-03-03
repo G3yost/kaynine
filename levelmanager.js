@@ -1,9 +1,9 @@
 // Change order of adding entities, add to array and sort by type before adding.
 
 LEVEL_LIST = [ "",
-"||||||||||||||||||||||||||||||\n |                            |\n |                            |\n |                            |\n |                          g |\n |              ||||          |\n |              |          ||||\n |              |          ||||\n |                vvvvvvvvv||||\n |   |||||||          ^^^^^||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |||       |       ||||||||||||\n |||        |      ||||||||||||\n |         |       ||||||||||||\n |         |       ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                 ||||||||||||\n |                            |\n |||||||                      |\n |||||||        ||            |\n |||||||                      |\n |||||||                      |\n |||||||                      |\n |||||||                       |\n ||||||||||                   |\n ||||||||||||||||||||||||     |\n |                            |\n | @                          |\n |                            |\n ||||||||||||||||||||||||||||||",
-"||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|   [       ^^^^^                                 |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
-"|||||||||||||||||||||||||||||||||||||\n |           |                       |\n |           |                       |\n |           |                       |\n |           |                       |\n |                        |||||   ||||\n | g                  ^^^     |      |\n |                 ^^^        |      |\n ||||        ||||             |      |\n |  |                         |      |\n |                                   |\n |                                   |\n |                                   |\n |      ||||                         |\n |         |              ||||||||||||\n |         |              ||||||||||||\n |         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n |||||       <>                      |\n |||||       <>                      |\n |           ||                      |\n |     |     |                       |\n |     |     |     ||||||            |\n |     |     |          |            |\n |     |                |            |\n |     |                |            |\n |     |                             |\n |^^^^^|    ||||                     |\n |||||||                          ||||\n |                                |  |\n |                                   |\n |                      ||||         |\n |                                   |\n |                                   |\n |        ||||                       |\n |                                   |\n | @                                 |\n |                   	             |\n ||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||",
+"||||||||||||||||||||||||||||||\n|                            |\n|                            |\n|                            |\n|                            |\n|                            |\n|                          g |\n|              ||||          |\n|              |   |||    ||||\n|              |      ^^^^||||\n|              |||||||||||||||\n|   |||||||    |||||||||||||||\n|         |       ||||||||||||\n|         |       ||||||||||||\n|         |       ||||||||||||\n|||       |       ||||||||||||\n|||       |       ||||||||||||\n|         |       ||||||||||||\n|         |       ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                            |\n|||||||                      |\n|||||||        ||            |\n|||||||                      |\n|||||||                      |\n||||||||||                   |\n||||||||||                   |\n||||||||||                   |\n||||||||||||||||||||||||     |\n|                            |\n| @                          |\n|                            |\n||||||||||||||||||||||||||||||",
+"||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|           ]                                    |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
+"|||||||||||||||||||||||||||||||||||||\n |           |                       |\n |           |                       |\n |           |                       |\n |           |                       |\n |                        |||||   ||||\n | g                  ^^^     |      |\n |                 ^^^        |      |\n ||||        ||||             |      |\n |  |                         |      |\n |                                   |\n |                                   |\n |                                   |\n |      ||||                         |\n |         |              ||||||||||||\n |         |              ||||||||||||\n |         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n |||||       <>                      |\n |||||       <>                      |\n |           ||                      |\n |     |     |                       |\n |     |     |     ||||||            |\n |     |     |          |            |\n |     |                |            |\n |     |                |            |\n |     |                             |\n |^^^^^|    ||||                     |\n |||||||                          ||||\n |                                |  |\n |                                   |\n |                      ||||         |\n |                                   |\n |                                   |\n |        ||||                       |\n |                                   |\n |  @                                |\n |                   	             |\n ||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||",
 ""]
 
 /*
@@ -36,6 +36,20 @@ LevelManager.prototype = new Entity();
 LevelManager.prototype.constructor = LevelManager;
 
 LevelManager.prototype.update = function () {
+    
+    var dogIsInLevel = false;
+    for( const ent in this.game.entities){
+        entity = this.game.entities[ent];
+        if(entity.type === 'kaynine'){
+            dogIsInLevel = true;
+        }
+    }
+
+    if(dogIsInLevel === false){ // dog has been removed from game world
+        loadLevel(this.game, this.level);
+    }
+    
+    
     switch(this.K9.isDead){
         case "Dead":
             // for( const ent in this.game.entities){
@@ -51,11 +65,24 @@ LevelManager.prototype.update = function () {
 
         case "Victory":
             loadLevel(this.game, this.level + 1);
+            console.log("Next Level");
             //console.log("You win");
         break;
 
         default : break; // nothing
     }
+    // var dogIsInLevel = false;
+    // for( const ent in this.game.entities){
+    //     entity = this.game.entities[ent];
+    //     if(entity.type === 'kaynine'){
+    //         dogIsInLevel = true;
+    //     }
+    // }
+
+    // if(dogIsInLevel === false){ // dog has been removed from game world
+    //     loadLevel(this.game, this.level);
+    // }
+
 }
 
 function loadLevel(game, levelNumber) {
@@ -64,15 +91,13 @@ function loadLevel(game, levelNumber) {
     //this.entityList = [];
     //game.entityList = [];
 
-    // add a background inside the load level
-    // if levelLength === 0 put up win screen ; else normal loadLevel actions
 
-    game.entities.length = 0;
+    game.entities.length = 0; // get rid of all entities in the level
 
     var cam = new Camera();
 
     if( level.length === 0){
-        var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"), camera);
+        var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"), cam);
         game.addEntity(win);
     } else {
 
@@ -150,62 +175,15 @@ function loadLevel(game, levelNumber) {
 
     var lvlMngr = new LevelManager(game, kayNine, levelNumber, cam); // This needs to be here because lvlMngr needs to be in the new entities update list
     game.addEntity(lvlMngr);
+    console.log("Reached the end of levelManager");
 
     }    //return entityList;
 }
 
 function beginGame(game, level) {
 
-    // game.ctx.font = "30px Arial";
-    // game.ctx.fillText("Display", 100, 100);
-
-    // clearLevel(game);
-
-    // switch(level) {
-    //     case 1: if(state === "victory") { level2(game); } else { level1(game); } break;
-    //     case 2: if(state === "victory") { level3(game); } else { level2(game); } break;
-
-    //     default: console.log("You beat the game!!!");
-    // }
-
     loadLevel(this, level);
 
 }
 
 
-// function clearAllEntities(game){
-
-//     for(const ent in this.game.entities){
-//         this.game.entities[ent].
-
-
-
-//     }
-
-// }
-
-// function level1(game) {
-
-//     var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"));
-//     game.addEntity(bg);
-
-//     loadLevel(game, 1);
-
-//     game.start(/*game,*/ 1);
-//     //beginGame(game, 1);
-// }
-
-// function level2(game) {
-
-//     var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"));
-//     game.addEntity(bg);
-
-//     loadLevel(game, 2);
-
-//     return game.start(game, 2);
-// }
-
-// // function clearLevel(game) {
-
-// //     game.entities.length = 0;
-// // }

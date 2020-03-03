@@ -1,17 +1,17 @@
-function Lazer(game, spritesheet, xPosition, yPosition, speed, faceRight, camera){
+function Lazer(game, spritesheet, xPosition, yPosition, speed, direction, camera){
     Entity.call(this, game, xPosition, yPosition + 10, 50, 10, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
     this.speed = speed;
-    this.faceRight = faceRight;
+    this.direction = direction;
     this.camera = camera;
 
 
 
-    if(this.faceRight === "R") {
+    if(this.direction === "R") {
         this.travel  = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, false);
     } 
-    if(this.faceRight === "L"){
+    if(this.direction === "L"){
         this.travel  = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, false);
     }
     // collision behavior can mimic that of a spike
@@ -25,15 +25,17 @@ Lazer.prototype.constructor = Lazer;
 Lazer.prototype.update = function () {
 
     var distance = this.game.clockTick * this.speed;
-    if(this.faceRight === "R"){
+    if(this.direction === "R"){
         this.xPos += distance;
+        this.boundingBox.update(this.xPos, this.yPos + 27);
     } 
 
-    if(this.faceLeft === "L"){
+    if(this.direction === "L"){
         this.xPos -= distance;
+        this.boundingBox.update(this.xPos + 20, this.yPos + 27);
     }
 
-    this.boundingBox.update(this.xPos, this.yPos + 27);
+    //this.boundingBox.update(this.xPos, this.yPos + 27);
 
     for (const ent in this.game.entities) {
 
@@ -41,25 +43,13 @@ Lazer.prototype.update = function () {
         if(this != entity && entity.type != "camera"){
             if (this.boundingBox.collide(entity.boundingBox)) {
                 if(entity.type === "kaynine") { // need this to kill the dog
-                    entity.isDead = "Dead";
-                    // this.game.entities.length = 0;
-                    // entity.update() does not do anything
+                    entity.update();
                 }
-                // this.wasTouching = true;
-
-
-                // if(this.wasTouching) {
-                //     this.removeFromWorld = true;
-                // }
-
 
                 console.log("Lazer has hit something");
                 console.log(entity.type);
-                // this.speed = 0;
-                // this.xPos = -10;
                 this.removeFromWorld = true; // having this will cause the crash of kaynine colliding with lazer
                 console.log(this.game.entities.length);
-                // if (entity.type === )
             }
         }
     }
