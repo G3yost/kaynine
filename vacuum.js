@@ -1,7 +1,9 @@
 function Vacuum(game, spritesheet, xPos, yPos, speed, direction, camera){
 	this.width = 128;
 	this.height = 64;
-    Entity.call(this, game, xPos, yPos, width, height, this);
+	this.xPos = xPos;
+	this.yPos = yPos;
+    Entity.call(this, game, this.xPos, this.yPos, this.width, this.height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
     this.camera;
@@ -11,17 +13,17 @@ function Vacuum(game, spritesheet, xPos, yPos, speed, direction, camera){
 	//STATUS
 	this.onWall   = false;
     this.isDead   = false;
+	this.touched = false;
 	
 	
 	
     this.type = "Vacuum";
 	
 	//	ANIMATIONS
+	this.attackRight = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_attack_left.png"), 0, 0, 128, 64, 0.2, 8, true, false);
 	this.movingRight = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_moving_right.png"), 0, 0, 128, 64, 0.075, 8, true, false);
-    this.movingLeft  = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_moving_left.png"), 0, 0, 128, 64, 0.075, 8, true, true);
-    this.attackRight = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_attack_left.png"), 0, 0, 128, 64, 0.2, 8, true, false);
-    this.attackLeft  = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_attack_right.png"), 0, 0, 128, 164, 0.2, 8, true, false);
-}
+	this.attackLeft  = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_attack_right.png"), 0, 0, 128, 164, 0.2, 8, true, false);
+	this.movingLeft  = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_moving_left.png"), 0, 0, 128, 64, 0.075, 8, true, true);
 
 Vacuum.prototype = new Entity();
 Vacuum.prototype.constructor = Vacuum;
@@ -30,11 +32,11 @@ Vacuum.prototype.update = function () {
 	
 	if (this.direction === "R")	{
 		if (this.onWall === true)	this.direction = "L";
-	}	else	{	xPos += speed;
+	}	else	{	this.xPos += this.speed;
 	}
 	if (this.direction === "L")	{
 		if (this.onWall === true)	this.direction = "R";
-	}	else	{	xPos -= speed;
+	}	else	{	this.xPos -= this.speed;
 	}
 	
 	
@@ -61,7 +63,7 @@ Vacuum.prototype.update = function () {
 
 
 Vacuum.prototype.draw = function (ctx) {
-    ctx.drawImage(this.spritesheet,
-                    this.xPos - this.camera.xPos, this.yPos - this.camera.yPos);
+    if (this.direction === "R")	this.movingRight.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos);
+	if (this.direction === "L")	this.movingLeft.drawFrame(this.game.clockTick, ctx, this.xPos - this.camera.xPos , this.yPos - this.camera.yPos);
     Entity.prototype.draw.call(this);
 }
