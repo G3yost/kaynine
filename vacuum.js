@@ -6,7 +6,7 @@ function Vacuum(game, spritesheet, xPos, yPos, speed, direction, camera){
     Entity.call(this, game, this.xPos, this.yPos, this.width, this.height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
-    this.camera;
+    this.camera = camera;
 	
 	this.speed = speed;
 
@@ -24,7 +24,7 @@ function Vacuum(game, spritesheet, xPos, yPos, speed, direction, camera){
 	this.movingRight = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_moving_right.png"), 0, 0, 128, 64, 0.075, 8, true, false);
 	this.attackLeft  = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_attack_right.png"), 0, 0, 128, 164, 0.2, 8, true, false);
 	this.movingLeft  = new Animation(ASSET_MANAGER.getAsset("./img/vacuum_moving_left.png"), 0, 0, 128, 64, 0.075, 8, true, true);
-
+}
 Vacuum.prototype = new Entity();
 Vacuum.prototype.constructor = Vacuum;
 
