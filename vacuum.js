@@ -1,16 +1,17 @@
-function Vacuum(game, spritesheet, xPosition, yPosition, width, height, camera){
-    Entity.call(this, game, xPosition, yPosition, width, height, this);
+function Vacuum(game, spritesheet, xPos, yPos, camera){
+	this.width = 128;
+	this.height = 64;
+    Entity.call(this, game, xPos, yPos, width, height, this);
     this.spritesheet = spritesheet;
     this.ctx = game.ctx;
     this.camera;
 
-    // collision behavior can mimic that of a vacuum
-    // the vacuum moves along a platform like an enemy
+
     this.type = "Vacuum";
 }
 
 Vacuum.prototype = new Entity();
-Vacuum.prototype.constructor = Floor;
+Vacuum.prototype.constructor = Vacuum;
 
 Vacuum.prototype.update = function () {
 
