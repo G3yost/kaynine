@@ -19,6 +19,12 @@ ASSET_MANAGER.queueDownload("img/lazer_right.png");
 ASSET_MANAGER.queueDownload("img/turret_left.png");
 ASSET_MANAGER.queueDownload("img/turret_right.png");
 
+//Vacuum
+ASSET_MANAGER.queueDownload("img/vacuum_attack_left.png");
+ASSET_MANAGER.queueDownload("img/vacuum_attack_right.png");
+ASSET_MANAGER.queueDownload("img/vacuum_moving_left.png");
+ASSET_MANAGER.queueDownload("img/vacuum_moving_right.png");
+
 ASSET_MANAGER.queueDownload("img/flag.png");
 
 // Files
