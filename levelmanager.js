@@ -141,6 +141,16 @@ function loadLevel(game, levelNumber) {
                     var sRight = new Spike(game, ASSET_MANAGER.getAsset("img/spike_right.png"), x, y, 65, 65, "r", cam);
                     game.addEntity(sRight);
                     /*this.entityList[i] = sRight;*/ break;    // Rightward Facing Spike
+					
+				case('{'):
+                    var vRight = new Vacuum(game, ASSET_MANAGER.getAsset("img/vacuum_moving_right.png"), x, y, 25, "R",  cam);
+                    game.addEntity(vRight);
+                break;      // Right Facing vacuum
+
+                case('}'):
+                    var vLeft = new Vacuum(game, ASSET_MANAGER.getAsset("img/vacuum_moving_left.png"), x, y, 25, "L",  cam);
+                    game.addEntity(vLeft);
+                break;          // Left Facing vacuum
 
                 case('\n'): 
                     y = y + blockHeight; x = -blockwidth; 
@@ -150,6 +160,7 @@ function loadLevel(game, levelNumber) {
                     console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
                 break;
             }
+			
             x = x + blockwidth;
             if(x > xMax) { xMax = x; }
         }
