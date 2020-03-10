@@ -27,6 +27,13 @@ ASSET_MANAGER.queueDownload("img/vacuum_moving_right.png");
 
 ASSET_MANAGER.queueDownload("img/flag.png");
 
+//Tutorial Keys
+ASSET_MANAGER.queueDownload("img/blink_w.png");
+ASSET_MANAGER.queueDownload("img/blink_a.png");
+ASSET_MANAGER.queueDownload("img/blink_s.png");
+ASSET_MANAGER.queueDownload("img/blink_d.png");
+ASSET_MANAGER.queueDownload("img/blink_space.png");
+
 // Files
 ASSET_MANAGER.queueDownload("./img/kay_nine_idle_right.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_idle_left.png");
@@ -41,6 +48,7 @@ ASSET_MANAGER.queueDownload("./img/kay_nine_wall_hanging_left.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump_right.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_wall_jump_left.png");
 ASSET_MANAGER.queueDownload("./img/kay_nine_death_animation.png");
+
 
 ASSET_MANAGER.queueDownload("./img/kay_nine_idle_temp.png");    // !!! CHANGE FILE NAME IN ANIM
 ASSET_MANAGER.queueDownload("./img/kay_nine_running_temp.png"); // !!! CHANGE FILE NAME IN ANIM NEED???

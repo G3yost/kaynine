@@ -270,6 +270,10 @@ console.log("wall");
                         //this.isDead = "Dead";
                     this.removeFromWorld = true;
                 break;
+				
+				case "vacuum":
+				this.removeFromWorld = true;
+				break;
 
                 default:
             }
