@@ -257,7 +257,9 @@ console.log("wall");
                 break;
 
                 case "goal":
-                        this.isDead = "Victory";
+                        //this.isDead = "Victory";
+                        this.game.isWin = true;
+                        this.removeFromWorld = true;
                 break;
 
                 case "lazer":

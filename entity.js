@@ -1,4 +1,4 @@
-DRAW_HIT_BOXES = true;
+DRAW_HIT_BOXES = false;
 
 function Entity(game, x, y, width, height) {
     this.game = game;

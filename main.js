@@ -48,8 +48,8 @@ ASSET_MANAGER.downloadAll(function () {
 
     var k9 = new KayNine(gameEngine, -200, -200);
     var lvlMng = new LevelManager(gameEngine, k9, 1);
-    var bg = new Background(gameEngine, ASSET_MANAGER.getAsset("img/background.png"), false);
-    gameEngine.addEntity(bg);
+    // var bg = new Background(gameEngine, ASSET_MANAGER.getAsset("img/background.png"), false);
+    // gameEngine.addEntity(bg);
 
     gameEngine.init(ctx);
 

@@ -2,17 +2,12 @@
 
 LEVEL_LIST = [ "",
 "||||||||||||||||||||||||||||||\n|                            |\n|                            |\n|                            |\n|                            |\n|                            |\n|                          g |\n|              ||||          |\n|              |   |||    ||||\n|              |      ^^^^||||\n|              |||||||||||||||\n|   |||||||    |||||||||||||||\n|         |       ||||||||||||\n|         |       ||||||||||||\n|         |       ||||||||||||\n|||       |       ||||||||||||\n|||       |       ||||||||||||\n|         |       ||||||||||||\n|         |       ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                 ||||||||||||\n|                            |\n|||||||                      |\n|||||||        ||            |\n|||||||                      |\n|||||||                      |\n||||||||||                   |\n||||||||||                   |\n||||||||||                   |\n||||||||||||||||||||||||     |\n|                            |\n| @                          |\n|                            |\n||||||||||||||||||||||||||||||",
-"||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 V                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                     <|||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|           ]                                    |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
-"|||||||||||||||||||||||||||||||||||||\n |           |                       |\n |           |                       |\n |           |                       |\n |           |                       |\n |                        |||||   ||||\n | g                  ^^^     |      |\n |                 ^^^        |      |\n ||||        ||||             |      |\n |  |                         |      |\n |                                   |\n |                                   |\n |                                   |\n |      ||||                         |\n |         |              ||||||||||||\n |         |              ||||||||||||\n |         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n |||||       <>                      |\n |||||       <>                      |\n |           ||                      |\n |     |     |                       |\n |     |     |     ||||||            |\n |     |     |          |            |\n |     |                |            |\n |     |                |            |\n |     |                             |\n |^^^^^|    ||||                     |\n |||||||                          ||||\n |                                |  |\n |                                   |\n |                      ||||         |\n |                                   |\n |                                   |\n |        ||||                       |\n |                                   |\n |  @                                |\n |                   	             |\n ||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||",
+"||||||||||||||||||||||||||||||||||||||||||||||||||\n|                 v                              |\n|                                                |\n|                                                |\n|                                                |\n|   g                                            |\n|                                                |\n|                                                |\n| |||||||||||||  ^ ^                    ^^      ||\n| |||||||||||||        |||||||||||||||||||      ||\n|                      |||||||||||||||||||      ||\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||       |\n|                      |||||||||||||||||||      <|\n|                      |||||||||||||||||||      <|\n|                      |||||||||||||||||||      <|\n|                      |||||||||||||||||||      <|\n|                      |||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||       |\n|                     <|||||||||||||||||||>      |\n|                               ||||||||||>      |\n| @                                  |||||>      |\n|                                                |\n|          ^^^^^                                 |\n||||||||||||||||||||||||||||||||||||||||||||||||||",
+"|||||||||||||||||||||||||||||||||||||\n|                                   |\n|                                   |\n|           |                       |\n|           |>                      |\n|           |                       |\n|           |                       |\n|           |                       |\n|                        |||||     ||\n| g                  ^^^     |      |\n|                 ^^^        |      |\n||||^^^^^^^|||||             |      |\n|                            |      |\n|                                   |\n|[                                  |\n|                                   |\n|                                   |\n|                                   |\n|                                   |\n|              ||||              ||||\n|      ||||||||                 ]||||\n|         |              ||||||||||||\n|         |              ||||||||||||\n|         |vvvvvvvvvvvvvvvvvvvvvvvvv|\n|||||       <>                      |\n|||||       <>                      |\n|           ||                      |\n|           |                       |\n|     |     |      ||||||           |\n|     |     |           |           |\n|     |                 |           |\n|     |                 |           |\n|     |                 |>          |\n|^^^^^|    ||||         |>          |\n|||||||                 |>       ||||\n|                                |  |\n|                                |  |\n|                                |  |\n|                                |  |\n|                                |  |\n|                 ||||             ]|\n|                           |||     |\n|        ||||                       |\n|                                   |\n| @                                 |\n|                   	            |\n||||||^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|\n|||||||||||||||||||||||||||||||||||||",
+"||||||||||||||||||||||||||||||\n|[                            |\n|[                            |\n|[                  |||       |\n|[                  |         |\n|[                      <|    |\n|[          ||||        <|  g |\n|[             |        <|    |\n|[             |        <||||||\n|[             |||            |\n|[                            |\n|[                            |\n|[                            |\n|[                  |||||     |\n|[                  |   |     |\n|[                      |     |\n|[                     <|     |\n|[         |||||       <|     |\n|[             |       <|     |\n|[             |       <|     |\n|[             |       <|     |\n|[             |              |\n|[                            |\n|[                            |\n|[                   ||||     |\n|[                   |        |\n|[                   |        |\n|[                   |        |\n|[                            |\n|[        |                   |\n|[        |                   |\n|[        ||||||              |\n|[                            |\n||||||||||||||||||||||||      |\n|[                            |\n|[      @                     |\n|[                            |\n|||||||||||||||||||||||||||||||",
 ""]
 
-/*
-He made this hold its own entity list and then performed load and delete functions
-He also had to add lvlMngr back into its own list once he emptied it
 
-Current issue is that the lvlMngr is not being updated beacuse it is not in the entitylist of the gameEngine
-
-*/
 function LevelManager(game, Kay9, lvl, camera){
     // this.moving = move;
     this.K9 = Kay9;
@@ -46,43 +41,15 @@ LevelManager.prototype.update = function () {
     }
 
     if(dogIsInLevel === false){ // dog has been removed from game world
-        loadLevel(this.game, this.level);
+        if(this.game.isWin){
+            this.game.isWin = false;
+            loadLevel(this.game,this.level + 1);
+        } else {
+            this.game.score -= 20;
+            loadLevel(this.game,this.level);
+        }
     }
     
-    
-    switch(this.K9.isDead){
-        case "Dead":
-            // for( const ent in this.game.entities){
-            //     entity = this.game.entities[ent];
-            //     //entity.removeFromWorld = true;
-            //     // entity.update();
-            //     console.log(entity.type);
-            // }
-            //this.game.entities.length = 0;
-            loadLevel(this.game, this.level);
-            //console.log("You die die");
-        break;
-
-        case "Victory":
-            loadLevel(this.game, this.level + 1);
-            console.log("Next Level");
-            //console.log("You win");
-        break;
-
-        default : break; // nothing
-    }
-    // var dogIsInLevel = false;
-    // for( const ent in this.game.entities){
-    //     entity = this.game.entities[ent];
-    //     if(entity.type === 'kaynine'){
-    //         dogIsInLevel = true;
-    //     }
-    // }
-
-    // if(dogIsInLevel === false){ // dog has been removed from game world
-    //     loadLevel(this.game, this.level);
-    // }
-
 }
 
 function loadLevel(game, levelNumber) {
@@ -91,18 +58,26 @@ function loadLevel(game, levelNumber) {
     //this.entityList = [];
     //game.entityList = [];
 
+    if(levelNumber == 1){
+        game.ctx.font = "20px Arial";
+        game.ctx.fillStyle = 'white';
+        game.ctx.strokeStyle = 'black';
+        game.ctx.fillText("'A' and 'D' for left/ right", 10, 50);
+        game.ctx.strokeText("'A' and 'D' for left/ right", 10, 50);
+        game.ctx.fillText("Space bar for both jump and wall jump", 10, 55);
+        game.ctx.strokeText("Space bar for both jump and wall jump", 10, 55);
+    }
+
 
     game.entities.length = 0; // get rid of all entities in the level
 
     var cam = new Camera();
 
     if( level.length === 0){
-        var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"), cam);
+        var win = new Background(game, ASSET_MANAGER.getAsset("img/win.jpg"),0, 0, cam);
         game.addEntity(win);
     } else {
 
-        // var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"), cam);
-        // game.addEntity(bg);
 
         x = 0;
         xMax = x;
@@ -112,6 +87,9 @@ function loadLevel(game, levelNumber) {
         blockHeight = 65;
 
         for(i = 0; i < level.length; i++) {
+
+            // var bg = new Background(game, ASSET_MANAGER.getAsset("img/background.png"),x, y, cam);
+            // game.queueEntity(bg);
 
             switch(level.charAt(i)) {
                 case(' '): break; // Nothing
@@ -135,12 +113,12 @@ function loadLevel(game, levelNumber) {
                 break;              // Goal
 
                 case('['):
-                    var RT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_right.png"), x, y, 100, 10, "R",  cam);
+                    var RT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_right.png"), x, y, 135, 6, "R",  cam);
                     game.addEntity(RT);
                 break;      // Right Facing Turret
 
                 case(']'):
-                    var LT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_left.png"), x, y, 100, 10, "L",  cam);
+                    var LT = new Turret(game, ASSET_MANAGER.getAsset("img/turret_left.png"), x, y, 135, 6, "L",  cam);
                     game.addEntity(LT);
                 break;          // Left Facing Turret
 
@@ -164,9 +142,13 @@ function loadLevel(game, levelNumber) {
                     game.addEntity(sRight);
                     /*this.entityList[i] = sRight;*/ break;    // Rightward Facing Spike
 
-                case('\n'): y = y + blockHeight; x = -blockwidth; break; // Next line
+                case('\n'): 
+                    y = y + blockHeight; x = -blockwidth; 
+                break; // Next line
 
-                default: console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
+                default: 
+                    console.log("Level builder encountered unknown character \"" + level.charAt(i) + "\"");
+                break;
             }
             x = x + blockwidth;
             if(x > xMax) { xMax = x; }
@@ -175,6 +157,10 @@ function loadLevel(game, levelNumber) {
 
     var lvlMngr = new LevelManager(game, kayNine, levelNumber, cam); // This needs to be here because lvlMngr needs to be in the new entities update list
     game.addEntity(lvlMngr);
+    // for(const ent in game.entities){
+    //     entity = game.entities[ent];
+    //     console.log(entity.type);
+    // }
     console.log("Reached the end of levelManager");
 
     }    //return entityList;

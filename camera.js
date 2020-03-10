@@ -4,7 +4,7 @@ function Camera (game) {
 	this.type = "camera";
 	this.width = document.getElementById('gameWorld').width;
 	this.height = document.getElementById('gameWorld').height;
-	this.horBuff = 450;
+	this.horBuff = 500;
 	this.vertBuff = 300;
 	this.kaynine = null;
 	//	Makes Camera object an entity
@@ -44,11 +44,13 @@ Camera.prototype.update = function ()	{
 	}
 	this.updatePos(offsetX, offsetY);
 
+
+
 }
 
 Camera.prototype.draw = function(ctx) {
 
-	ctx.rect(this.boundingBox.left - this.xPos, this.boundingBox.top - this.yPos, this.boundingBox.width, this.boundingBox.height);
+	//ctx.rect(this.boundingBox.left - this.xPos, this.boundingBox.top - this.yPos, this.boundingBox.width, this.boundingBox.height);
 }
 
 Camera.prototype.updatePos = function(x, y)	{

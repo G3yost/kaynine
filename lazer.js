@@ -12,7 +12,7 @@ function Lazer(game, spritesheet, xPosition, yPosition, speed, direction, camera
         this.travel  = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, false);
     } 
     if(this.direction === "L"){
-        this.travel  = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, false);
+        this.travel  = new Animation(this.spritesheet, 0, 0, 50, 50, 0.2, 7, true, true);
     }
     // collision behavior can mimic that of a spike
     // this is technically a spike on the move
@@ -40,7 +40,7 @@ Lazer.prototype.update = function () {
     for (const ent in this.game.entities) {
 
         entity = this.game.entities[ent];
-        if(this != entity && entity.type != "camera"){
+        if(this != entity && entity.type != "camera" && entity.type != "background"){
             if (this.boundingBox.collide(entity.boundingBox)) {
                 if(entity.type === "kaynine") { // need this to kill the dog
                     entity.update();
